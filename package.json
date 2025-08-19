@@ -24,5 +24,10 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
-  }
+  },
+  "description": "1) Node 설치 후 의존성 설치 ```bash cd dividend-portfolio npm install cp .env.example .env # .env 내용 채우기 ```",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
