@@ -1,0 +1,9 @@
+<%- include('inc/top', {title:'회원가입'}) %>
+<h2>회원가입</h2>
+<form method="post" action="/auth/register">
+  <input name="email" placeholder="Email" />
+  <input name="password" type="password" placeholder="Password" />
+  <input name="nickname" placeholder="Nickname" />
+  <button type="submit">Register</button>
+</form>
+<%- include('inc/bottom') %>

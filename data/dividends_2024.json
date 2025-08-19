@@ -1,0 +1,1775 @@
+[
+  {
+    "index": "NASDAQ-100",
+    "ticker": "AAPL",
+    "name": "Apple Inc.",
+    "currency": "USD",
+    "eventDate": "2024-02-09",
+    "dividend": 0.24,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "AAPL",
+    "name": "Apple Inc.",
+    "currency": "USD",
+    "eventDate": "2024-05-10",
+    "dividend": 0.25,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "AAPL",
+    "name": "Apple Inc.",
+    "currency": "USD",
+    "eventDate": "2024-08-12",
+    "dividend": 0.25,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "AAPL",
+    "name": "Apple Inc.",
+    "currency": "USD",
+    "eventDate": "2024-11-08",
+    "dividend": 0.25,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ADI",
+    "name": "Analog Devices",
+    "currency": "USD",
+    "eventDate": "2024-03-04",
+    "dividend": 0.92,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ADI",
+    "name": "Analog Devices",
+    "currency": "USD",
+    "eventDate": "2024-06-04",
+    "dividend": 0.92,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ADI",
+    "name": "Analog Devices",
+    "currency": "USD",
+    "eventDate": "2024-09-03",
+    "dividend": 0.92,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ADI",
+    "name": "Analog Devices",
+    "currency": "USD",
+    "eventDate": "2024-12-09",
+    "dividend": 0.92,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ADP",
+    "name": "Automatic Data Processing",
+    "currency": "USD",
+    "eventDate": "2024-03-07",
+    "dividend": 1.4,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ADP",
+    "name": "Automatic Data Processing",
+    "currency": "USD",
+    "eventDate": "2024-06-14",
+    "dividend": 1.4,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ADP",
+    "name": "Automatic Data Processing",
+    "currency": "USD",
+    "eventDate": "2024-09-13",
+    "dividend": 1.4,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ADP",
+    "name": "Automatic Data Processing",
+    "currency": "USD",
+    "eventDate": "2024-12-13",
+    "dividend": 1.54,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "AEP",
+    "name": "American Electric Power",
+    "currency": "USD",
+    "eventDate": "2024-02-08",
+    "dividend": 0.88,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "AEP",
+    "name": "American Electric Power",
+    "currency": "USD",
+    "eventDate": "2024-05-09",
+    "dividend": 0.88,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "AEP",
+    "name": "American Electric Power",
+    "currency": "USD",
+    "eventDate": "2024-08-09",
+    "dividend": 0.88,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "AEP",
+    "name": "American Electric Power",
+    "currency": "USD",
+    "eventDate": "2024-11-08",
+    "dividend": 0.93,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "AMAT",
+    "name": "Applied Materials",
+    "currency": "USD",
+    "eventDate": "2024-02-21",
+    "dividend": 0.32,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "AMAT",
+    "name": "Applied Materials",
+    "currency": "USD",
+    "eventDate": "2024-05-22",
+    "dividend": 0.4,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "AMAT",
+    "name": "Applied Materials",
+    "currency": "USD",
+    "eventDate": "2024-08-22",
+    "dividend": 0.4,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "AMAT",
+    "name": "Applied Materials",
+    "currency": "USD",
+    "eventDate": "2024-11-21",
+    "dividend": 0.4,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ASML",
+    "name": "ASML Holding",
+    "currency": "USD",
+    "eventDate": "2024-02-05",
+    "dividend": 1.556,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ASML",
+    "name": "ASML Holding",
+    "currency": "USD",
+    "eventDate": "2024-04-26",
+    "dividend": 1.873,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ASML",
+    "name": "ASML Holding",
+    "currency": "USD",
+    "eventDate": "2024-07-29",
+    "dividend": 1.643,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ASML",
+    "name": "ASML Holding",
+    "currency": "USD",
+    "eventDate": "2024-10-29",
+    "dividend": 1.641,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "AVGO",
+    "name": "Broadcom",
+    "currency": "USD",
+    "eventDate": "2024-03-20",
+    "dividend": 0.525,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "AVGO",
+    "name": "Broadcom",
+    "currency": "USD",
+    "eventDate": "2024-06-24",
+    "dividend": 0.525,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "AVGO",
+    "name": "Broadcom",
+    "currency": "USD",
+    "eventDate": "2024-09-19",
+    "dividend": 0.53,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "AVGO",
+    "name": "Broadcom",
+    "currency": "USD",
+    "eventDate": "2024-12-23",
+    "dividend": 0.59,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "BKR",
+    "name": "Baker Hughes",
+    "currency": "USD",
+    "eventDate": "2024-02-12",
+    "dividend": 0.21,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "BKR",
+    "name": "Baker Hughes",
+    "currency": "USD",
+    "eventDate": "2024-05-03",
+    "dividend": 0.21,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "BKR",
+    "name": "Baker Hughes",
+    "currency": "USD",
+    "eventDate": "2024-08-06",
+    "dividend": 0.21,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "BKR",
+    "name": "Baker Hughes",
+    "currency": "USD",
+    "eventDate": "2024-11-04",
+    "dividend": 0.21,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CDW",
+    "name": "CDW Corporation",
+    "currency": "USD",
+    "eventDate": "2024-02-23",
+    "dividend": 0.62,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CDW",
+    "name": "CDW Corporation",
+    "currency": "USD",
+    "eventDate": "2024-05-23",
+    "dividend": 0.62,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CDW",
+    "name": "CDW Corporation",
+    "currency": "USD",
+    "eventDate": "2024-08-26",
+    "dividend": 0.62,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CDW",
+    "name": "CDW Corporation",
+    "currency": "USD",
+    "eventDate": "2024-11-25",
+    "dividend": 0.625,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CEG",
+    "name": "Constellation Energy",
+    "currency": "USD",
+    "eventDate": "2024-03-07",
+    "dividend": 0.353,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CEG",
+    "name": "Constellation Energy",
+    "currency": "USD",
+    "eventDate": "2024-05-29",
+    "dividend": 0.353,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CEG",
+    "name": "Constellation Energy",
+    "currency": "USD",
+    "eventDate": "2024-08-12",
+    "dividend": 0.353,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CEG",
+    "name": "Constellation Energy",
+    "currency": "USD",
+    "eventDate": "2024-11-15",
+    "dividend": 0.353,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CMCSA",
+    "name": "Comcast",
+    "currency": "USD",
+    "eventDate": "2024-01-02",
+    "dividend": 0.29,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CMCSA",
+    "name": "Comcast",
+    "currency": "USD",
+    "eventDate": "2024-04-02",
+    "dividend": 0.31,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CMCSA",
+    "name": "Comcast",
+    "currency": "USD",
+    "eventDate": "2024-07-03",
+    "dividend": 0.31,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CMCSA",
+    "name": "Comcast",
+    "currency": "USD",
+    "eventDate": "2024-10-02",
+    "dividend": 0.31,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "COST",
+    "name": "Costco",
+    "currency": "USD",
+    "eventDate": "2024-02-01",
+    "dividend": 1.02,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "COST",
+    "name": "Costco",
+    "currency": "USD",
+    "eventDate": "2024-04-25",
+    "dividend": 1.16,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "COST",
+    "name": "Costco",
+    "currency": "USD",
+    "eventDate": "2024-07-26",
+    "dividend": 1.16,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "COST",
+    "name": "Costco",
+    "currency": "USD",
+    "eventDate": "2024-11-01",
+    "dividend": 1.16,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CSCO",
+    "name": "Cisco",
+    "currency": "USD",
+    "eventDate": "2024-01-03",
+    "dividend": 0.39,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CSCO",
+    "name": "Cisco",
+    "currency": "USD",
+    "eventDate": "2024-04-03",
+    "dividend": 0.4,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CSCO",
+    "name": "Cisco",
+    "currency": "USD",
+    "eventDate": "2024-07-05",
+    "dividend": 0.4,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CSCO",
+    "name": "Cisco",
+    "currency": "USD",
+    "eventDate": "2024-10-02",
+    "dividend": 0.4,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CSX",
+    "name": "CSX Corporation",
+    "currency": "USD",
+    "eventDate": "2024-02-28",
+    "dividend": 0.12,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CSX",
+    "name": "CSX Corporation",
+    "currency": "USD",
+    "eventDate": "2024-05-31",
+    "dividend": 0.12,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CSX",
+    "name": "CSX Corporation",
+    "currency": "USD",
+    "eventDate": "2024-08-30",
+    "dividend": 0.12,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CSX",
+    "name": "CSX Corporation",
+    "currency": "USD",
+    "eventDate": "2024-11-29",
+    "dividend": 0.12,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CTAS",
+    "name": "Cintas",
+    "currency": "USD",
+    "eventDate": "2024-02-14",
+    "dividend": 0.3375,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CTAS",
+    "name": "Cintas",
+    "currency": "USD",
+    "eventDate": "2024-05-14",
+    "dividend": 0.3375,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CTAS",
+    "name": "Cintas",
+    "currency": "USD",
+    "eventDate": "2024-08-15",
+    "dividend": 0.39,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CTAS",
+    "name": "Cintas",
+    "currency": "USD",
+    "eventDate": "2024-11-15",
+    "dividend": 0.39,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CTSH",
+    "name": "Cognizant",
+    "currency": "USD",
+    "eventDate": "2024-02-16",
+    "dividend": 0.3,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CTSH",
+    "name": "Cognizant",
+    "currency": "USD",
+    "eventDate": "2024-05-17",
+    "dividend": 0.3,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CTSH",
+    "name": "Cognizant",
+    "currency": "USD",
+    "eventDate": "2024-08-20",
+    "dividend": 0.3,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "CTSH",
+    "name": "Cognizant",
+    "currency": "USD",
+    "eventDate": "2024-11-19",
+    "dividend": 0.3,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "EXC",
+    "name": "Exelon",
+    "currency": "USD",
+    "eventDate": "2024-03-01",
+    "dividend": 0.38,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "EXC",
+    "name": "Exelon",
+    "currency": "USD",
+    "eventDate": "2024-05-10",
+    "dividend": 0.38,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "EXC",
+    "name": "Exelon",
+    "currency": "USD",
+    "eventDate": "2024-08-12",
+    "dividend": 0.38,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "EXC",
+    "name": "Exelon",
+    "currency": "USD",
+    "eventDate": "2024-11-08",
+    "dividend": 0.38,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "FANG",
+    "name": "Diamondback Energy",
+    "currency": "USD",
+    "eventDate": "2024-03-04",
+    "dividend": 3.08,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "FANG",
+    "name": "Diamondback Energy",
+    "currency": "USD",
+    "eventDate": "2024-05-14",
+    "dividend": 1.97,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "FANG",
+    "name": "Diamondback Energy",
+    "currency": "USD",
+    "eventDate": "2024-08-15",
+    "dividend": 2.34,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "FANG",
+    "name": "Diamondback Energy",
+    "currency": "USD",
+    "eventDate": "2024-11-14",
+    "dividend": 0.9,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "FAST",
+    "name": "Fastenal",
+    "currency": "USD",
+    "eventDate": "2024-04-24",
+    "dividend": 0.39,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "FAST",
+    "name": "Fastenal",
+    "currency": "USD",
+    "eventDate": "2024-07-26",
+    "dividend": 0.39,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "FAST",
+    "name": "Fastenal",
+    "currency": "USD",
+    "eventDate": "2024-10-25",
+    "dividend": 0.39,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "GEHC",
+    "name": "GE HealthCare",
+    "currency": "USD",
+    "eventDate": "2024-01-12",
+    "dividend": 0.03,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "GEHC",
+    "name": "GE HealthCare",
+    "currency": "USD",
+    "eventDate": "2024-04-18",
+    "dividend": 0.03,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "GEHC",
+    "name": "GE HealthCare",
+    "currency": "USD",
+    "eventDate": "2024-07-19",
+    "dividend": 0.03,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "GEHC",
+    "name": "GE HealthCare",
+    "currency": "USD",
+    "eventDate": "2024-10-18",
+    "dividend": 0.03,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "GILD",
+    "name": "Gilead Sciences",
+    "currency": "USD",
+    "eventDate": "2024-03-14",
+    "dividend": 0.77,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "GILD",
+    "name": "Gilead Sciences",
+    "currency": "USD",
+    "eventDate": "2024-06-14",
+    "dividend": 0.77,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "GILD",
+    "name": "Gilead Sciences",
+    "currency": "USD",
+    "eventDate": "2024-09-13",
+    "dividend": 0.77,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "GILD",
+    "name": "Gilead Sciences",
+    "currency": "USD",
+    "eventDate": "2024-12-13",
+    "dividend": 0.77,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "GOOG",
+    "name": "Alphabet Inc. (Class C)",
+    "currency": "USD",
+    "eventDate": "2024-06-10",
+    "dividend": 0.2,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "GOOG",
+    "name": "Alphabet Inc. (Class C)",
+    "currency": "USD",
+    "eventDate": "2024-09-09",
+    "dividend": 0.2,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "GOOG",
+    "name": "Alphabet Inc. (Class C)",
+    "currency": "USD",
+    "eventDate": "2024-12-09",
+    "dividend": 0.2,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "GOOGL",
+    "name": "Alphabet Inc. (Class A)",
+    "currency": "USD",
+    "eventDate": "2024-06-10",
+    "dividend": 0.2,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "GOOGL",
+    "name": "Alphabet Inc. (Class A)",
+    "currency": "USD",
+    "eventDate": "2024-09-09",
+    "dividend": 0.2,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "GOOGL",
+    "name": "Alphabet Inc. (Class A)",
+    "currency": "USD",
+    "eventDate": "2024-12-09",
+    "dividend": 0.2,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "HON",
+    "name": "Honeywell",
+    "currency": "USD",
+    "eventDate": "2024-02-29",
+    "dividend": 1.08,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "HON",
+    "name": "Honeywell",
+    "currency": "USD",
+    "eventDate": "2024-05-16",
+    "dividend": 1.08,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "HON",
+    "name": "Honeywell",
+    "currency": "USD",
+    "eventDate": "2024-08-16",
+    "dividend": 1.08,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "HON",
+    "name": "Honeywell",
+    "currency": "USD",
+    "eventDate": "2024-11-15",
+    "dividend": 1.13,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "INTC",
+    "name": "Intel",
+    "currency": "USD",
+    "eventDate": "2024-02-06",
+    "dividend": 0.125,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "INTC",
+    "name": "Intel",
+    "currency": "USD",
+    "eventDate": "2024-05-06",
+    "dividend": 0.125,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "INTC",
+    "name": "Intel",
+    "currency": "USD",
+    "eventDate": "2024-08-07",
+    "dividend": 0.125,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "INTU",
+    "name": "Intuit",
+    "currency": "USD",
+    "eventDate": "2024-01-09",
+    "dividend": 0.9,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "INTU",
+    "name": "Intuit",
+    "currency": "USD",
+    "eventDate": "2024-04-09",
+    "dividend": 0.9,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "INTU",
+    "name": "Intuit",
+    "currency": "USD",
+    "eventDate": "2024-07-10",
+    "dividend": 0.9,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "INTU",
+    "name": "Intuit",
+    "currency": "USD",
+    "eventDate": "2024-10-10",
+    "dividend": 1.04,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "KDP",
+    "name": "Keurig Dr Pepper",
+    "currency": "USD",
+    "eventDate": "2024-01-04",
+    "dividend": 0.215,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "KDP",
+    "name": "Keurig Dr Pepper",
+    "currency": "USD",
+    "eventDate": "2024-03-27",
+    "dividend": 0.215,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "KDP",
+    "name": "Keurig Dr Pepper",
+    "currency": "USD",
+    "eventDate": "2024-06-28",
+    "dividend": 0.215,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "KDP",
+    "name": "Keurig Dr Pepper",
+    "currency": "USD",
+    "eventDate": "2024-09-27",
+    "dividend": 0.23,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "KHC",
+    "name": "Kraft Heinz",
+    "currency": "USD",
+    "eventDate": "2024-03-07",
+    "dividend": 0.4,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "KHC",
+    "name": "Kraft Heinz",
+    "currency": "USD",
+    "eventDate": "2024-06-06",
+    "dividend": 0.4,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "KHC",
+    "name": "Kraft Heinz",
+    "currency": "USD",
+    "eventDate": "2024-08-30",
+    "dividend": 0.4,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "KHC",
+    "name": "Kraft Heinz",
+    "currency": "USD",
+    "eventDate": "2024-11-29",
+    "dividend": 0.4,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "KLAC",
+    "name": "KLA Corporation",
+    "currency": "USD",
+    "eventDate": "2024-02-15",
+    "dividend": 1.45,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "KLAC",
+    "name": "KLA Corporation",
+    "currency": "USD",
+    "eventDate": "2024-05-14",
+    "dividend": 1.45,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "KLAC",
+    "name": "KLA Corporation",
+    "currency": "USD",
+    "eventDate": "2024-08-15",
+    "dividend": 1.45,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "KLAC",
+    "name": "KLA Corporation",
+    "currency": "USD",
+    "eventDate": "2024-11-18",
+    "dividend": 1.7,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "LIN",
+    "name": "Linde plc",
+    "currency": "USD",
+    "eventDate": "2024-03-13",
+    "dividend": 1.39,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "LIN",
+    "name": "Linde plc",
+    "currency": "USD",
+    "eventDate": "2024-06-04",
+    "dividend": 1.39,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "LIN",
+    "name": "Linde plc",
+    "currency": "USD",
+    "eventDate": "2024-09-04",
+    "dividend": 1.39,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "LIN",
+    "name": "Linde plc",
+    "currency": "USD",
+    "eventDate": "2024-12-03",
+    "dividend": 1.39,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MAR",
+    "name": "Marriott International",
+    "currency": "USD",
+    "eventDate": "2024-02-21",
+    "dividend": 0.52,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MAR",
+    "name": "Marriott International",
+    "currency": "USD",
+    "eventDate": "2024-05-23",
+    "dividend": 0.63,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MAR",
+    "name": "Marriott International",
+    "currency": "USD",
+    "eventDate": "2024-08-16",
+    "dividend": 0.63,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MAR",
+    "name": "Marriott International",
+    "currency": "USD",
+    "eventDate": "2024-11-21",
+    "dividend": 0.63,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MCHP",
+    "name": "Microchip Technology",
+    "currency": "USD",
+    "eventDate": "2024-02-22",
+    "dividend": 0.45,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MCHP",
+    "name": "Microchip Technology",
+    "currency": "USD",
+    "eventDate": "2024-05-21",
+    "dividend": 0.452,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MCHP",
+    "name": "Microchip Technology",
+    "currency": "USD",
+    "eventDate": "2024-08-22",
+    "dividend": 0.454,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MCHP",
+    "name": "Microchip Technology",
+    "currency": "USD",
+    "eventDate": "2024-11-22",
+    "dividend": 0.455,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MDLZ",
+    "name": "Mondelez International",
+    "currency": "USD",
+    "eventDate": "2024-03-27",
+    "dividend": 0.425,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MDLZ",
+    "name": "Mondelez International",
+    "currency": "USD",
+    "eventDate": "2024-06-28",
+    "dividend": 0.425,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MDLZ",
+    "name": "Mondelez International",
+    "currency": "USD",
+    "eventDate": "2024-09-30",
+    "dividend": 0.47,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MDLZ",
+    "name": "Mondelez International",
+    "currency": "USD",
+    "eventDate": "2024-12-31",
+    "dividend": 0.47,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MRVL",
+    "name": "Marvell Technology",
+    "currency": "USD",
+    "eventDate": "2024-01-04",
+    "dividend": 0.06,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MRVL",
+    "name": "Marvell Technology",
+    "currency": "USD",
+    "eventDate": "2024-04-11",
+    "dividend": 0.06,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MRVL",
+    "name": "Marvell Technology",
+    "currency": "USD",
+    "eventDate": "2024-07-12",
+    "dividend": 0.06,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MRVL",
+    "name": "Marvell Technology",
+    "currency": "USD",
+    "eventDate": "2024-10-11",
+    "dividend": 0.06,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MSFT",
+    "name": "Microsoft",
+    "currency": "USD",
+    "eventDate": "2024-02-14",
+    "dividend": 0.75,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MSFT",
+    "name": "Microsoft",
+    "currency": "USD",
+    "eventDate": "2024-05-15",
+    "dividend": 0.75,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MSFT",
+    "name": "Microsoft",
+    "currency": "USD",
+    "eventDate": "2024-08-15",
+    "dividend": 0.75,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MSFT",
+    "name": "Microsoft",
+    "currency": "USD",
+    "eventDate": "2024-11-21",
+    "dividend": 0.83,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MU",
+    "name": "Micron Technology",
+    "currency": "USD",
+    "eventDate": "2024-03-28",
+    "dividend": 0.115,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MU",
+    "name": "Micron Technology",
+    "currency": "USD",
+    "eventDate": "2024-07-08",
+    "dividend": 0.115,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MU",
+    "name": "Micron Technology",
+    "currency": "USD",
+    "eventDate": "2024-10-07",
+    "dividend": 0.115,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "MU",
+    "name": "Micron Technology",
+    "currency": "USD",
+    "eventDate": "2024-12-30",
+    "dividend": 0.115,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "NVDA",
+    "name": "Nvidia",
+    "currency": "USD",
+    "eventDate": "2024-03-05",
+    "dividend": 0.004,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "NVDA",
+    "name": "Nvidia",
+    "currency": "USD",
+    "eventDate": "2024-06-11",
+    "dividend": 0.01,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "NVDA",
+    "name": "Nvidia",
+    "currency": "USD",
+    "eventDate": "2024-09-12",
+    "dividend": 0.01,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "NVDA",
+    "name": "Nvidia",
+    "currency": "USD",
+    "eventDate": "2024-12-05",
+    "dividend": 0.01,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "NXPI",
+    "name": "NXP Semiconductors",
+    "currency": "USD",
+    "eventDate": "2024-03-20",
+    "dividend": 1.014,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "NXPI",
+    "name": "NXP Semiconductors",
+    "currency": "USD",
+    "eventDate": "2024-06-13",
+    "dividend": 1.014,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "NXPI",
+    "name": "NXP Semiconductors",
+    "currency": "USD",
+    "eventDate": "2024-09-12",
+    "dividend": 1.014,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "NXPI",
+    "name": "NXP Semiconductors",
+    "currency": "USD",
+    "eventDate": "2024-12-05",
+    "dividend": 1.014,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ODFL",
+    "name": "Old Dominion Freight Line",
+    "currency": "USD",
+    "eventDate": "2024-03-05",
+    "dividend": 0.26,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ODFL",
+    "name": "Old Dominion Freight Line",
+    "currency": "USD",
+    "eventDate": "2024-06-05",
+    "dividend": 0.26,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ODFL",
+    "name": "Old Dominion Freight Line",
+    "currency": "USD",
+    "eventDate": "2024-09-04",
+    "dividend": 0.26,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ODFL",
+    "name": "Old Dominion Freight Line",
+    "currency": "USD",
+    "eventDate": "2024-12-04",
+    "dividend": 0.26,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "PAYX",
+    "name": "Paychex",
+    "currency": "USD",
+    "eventDate": "2024-02-12",
+    "dividend": 0.89,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "PAYX",
+    "name": "Paychex",
+    "currency": "USD",
+    "eventDate": "2024-05-09",
+    "dividend": 0.98,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "PAYX",
+    "name": "Paychex",
+    "currency": "USD",
+    "eventDate": "2024-08-08",
+    "dividend": 0.98,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "PAYX",
+    "name": "Paychex",
+    "currency": "USD",
+    "eventDate": "2024-11-07",
+    "dividend": 0.98,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "PCAR",
+    "name": "Paccar",
+    "currency": "USD",
+    "eventDate": "2024-02-14",
+    "dividend": 0.27,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "PCAR",
+    "name": "Paccar",
+    "currency": "USD",
+    "eventDate": "2024-05-14",
+    "dividend": 0.3,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "PCAR",
+    "name": "Paccar",
+    "currency": "USD",
+    "eventDate": "2024-08-15",
+    "dividend": 0.3,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "PCAR",
+    "name": "Paccar",
+    "currency": "USD",
+    "eventDate": "2024-11-13",
+    "dividend": 0.3,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "PCAR",
+    "name": "Paccar",
+    "currency": "USD",
+    "eventDate": "2024-12-20",
+    "dividend": 3.0,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "PEP",
+    "name": "PepsiCo",
+    "currency": "USD",
+    "eventDate": "2024-02-29",
+    "dividend": 1.265,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "PEP",
+    "name": "PepsiCo",
+    "currency": "USD",
+    "eventDate": "2024-06-07",
+    "dividend": 1.355,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "PEP",
+    "name": "PepsiCo",
+    "currency": "USD",
+    "eventDate": "2024-09-06",
+    "dividend": 1.355,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "PEP",
+    "name": "PepsiCo",
+    "currency": "USD",
+    "eventDate": "2024-12-06",
+    "dividend": 1.355,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "QCOM",
+    "name": "Qualcomm",
+    "currency": "USD",
+    "eventDate": "2024-02-28",
+    "dividend": 0.8,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "QCOM",
+    "name": "Qualcomm",
+    "currency": "USD",
+    "eventDate": "2024-05-30",
+    "dividend": 0.85,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "QCOM",
+    "name": "Qualcomm",
+    "currency": "USD",
+    "eventDate": "2024-09-05",
+    "dividend": 0.85,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "QCOM",
+    "name": "Qualcomm",
+    "currency": "USD",
+    "eventDate": "2024-12-05",
+    "dividend": 0.85,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ROP",
+    "name": "Roper Technologies",
+    "currency": "USD",
+    "eventDate": "2024-01-08",
+    "dividend": 0.75,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ROP",
+    "name": "Roper Technologies",
+    "currency": "USD",
+    "eventDate": "2024-04-04",
+    "dividend": 0.75,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ROP",
+    "name": "Roper Technologies",
+    "currency": "USD",
+    "eventDate": "2024-07-08",
+    "dividend": 0.75,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ROP",
+    "name": "Roper Technologies",
+    "currency": "USD",
+    "eventDate": "2024-10-08",
+    "dividend": 0.75,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ROST",
+    "name": "Ross Stores",
+    "currency": "USD",
+    "eventDate": "2024-03-14",
+    "dividend": 0.368,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ROST",
+    "name": "Ross Stores",
+    "currency": "USD",
+    "eventDate": "2024-06-11",
+    "dividend": 0.368,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ROST",
+    "name": "Ross Stores",
+    "currency": "USD",
+    "eventDate": "2024-09-10",
+    "dividend": 0.368,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "ROST",
+    "name": "Ross Stores",
+    "currency": "USD",
+    "eventDate": "2024-12-10",
+    "dividend": 0.368,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "SBUX",
+    "name": "Starbucks",
+    "currency": "USD",
+    "eventDate": "2024-02-08",
+    "dividend": 0.57,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "SBUX",
+    "name": "Starbucks",
+    "currency": "USD",
+    "eventDate": "2024-05-16",
+    "dividend": 0.57,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "SBUX",
+    "name": "Starbucks",
+    "currency": "USD",
+    "eventDate": "2024-08-16",
+    "dividend": 0.57,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "SBUX",
+    "name": "Starbucks",
+    "currency": "USD",
+    "eventDate": "2024-11-15",
+    "dividend": 0.61,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "TMUS",
+    "name": "T-Mobile US",
+    "currency": "USD",
+    "eventDate": "2024-02-29",
+    "dividend": 0.65,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "TMUS",
+    "name": "T-Mobile US",
+    "currency": "USD",
+    "eventDate": "2024-05-31",
+    "dividend": 0.65,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "TMUS",
+    "name": "T-Mobile US",
+    "currency": "USD",
+    "eventDate": "2024-08-30",
+    "dividend": 0.65,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "TMUS",
+    "name": "T-Mobile US",
+    "currency": "USD",
+    "eventDate": "2024-11-27",
+    "dividend": 0.88,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "TRI",
+    "name": "Thomson Reuters",
+    "currency": "USD",
+    "eventDate": "2024-02-20",
+    "dividend": 0.54,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "TRI",
+    "name": "Thomson Reuters",
+    "currency": "USD",
+    "eventDate": "2024-05-15",
+    "dividend": 0.54,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "TRI",
+    "name": "Thomson Reuters",
+    "currency": "USD",
+    "eventDate": "2024-08-15",
+    "dividend": 0.54,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "TRI",
+    "name": "Thomson Reuters",
+    "currency": "USD",
+    "eventDate": "2024-11-21",
+    "dividend": 0.54,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "TXN",
+    "name": "Texas Instruments",
+    "currency": "USD",
+    "eventDate": "2024-01-30",
+    "dividend": 1.3,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "TXN",
+    "name": "Texas Instruments",
+    "currency": "USD",
+    "eventDate": "2024-05-07",
+    "dividend": 1.3,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "TXN",
+    "name": "Texas Instruments",
+    "currency": "USD",
+    "eventDate": "2024-07-31",
+    "dividend": 1.3,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "TXN",
+    "name": "Texas Instruments",
+    "currency": "USD",
+    "eventDate": "2024-10-31",
+    "dividend": 1.36,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "VRSK",
+    "name": "Verisk Analytics",
+    "currency": "USD",
+    "eventDate": "2024-03-14",
+    "dividend": 0.39,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "VRSK",
+    "name": "Verisk Analytics",
+    "currency": "USD",
+    "eventDate": "2024-06-14",
+    "dividend": 0.39,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "VRSK",
+    "name": "Verisk Analytics",
+    "currency": "USD",
+    "eventDate": "2024-09-13",
+    "dividend": 0.39,
+    "price": 100
+  },
+  {
+    "index": "NASDAQ-100",
+    "ticker": "VRSK",
+    "name": "Verisk Analytics",
+    "currency": "USD",
+    "eventDate": "2024-12-13",
+    "dividend": 0.39,
+    "price": 100
+  }
+]

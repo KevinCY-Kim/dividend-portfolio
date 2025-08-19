@@ -1,0 +1,8 @@
+<%- include('inc/top', {title:'로그인'}) %>
+<h2>로그인</h2>
+<form method="post" action="/auth/login">
+  <input name="email" placeholder="Email" />
+  <input name="password" type="password" placeholder="Password" />
+  <button type="submit">Login</button>
+</form>
+<%- include('inc/bottom') %>

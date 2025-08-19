@@ -1,0 +1,14 @@
+<%- include('inc/top', {title:'게시판'}) %>
+<h2>게시판</h2>
+<form method="post" action="/board">
+  <input name="title" placeholder="제목" />
+  <textarea name="body" placeholder="내용"></textarea>
+  <button type="submit">등록</button>
+</form>
+<hr />
+<ul>
+  <% (posts||[]).forEach(p=> { %>
+    <li><b><%= p.title %></b> - <%= new Date(p.createdAt).toLocaleString('ko-KR') %><br/><%= p.body %></li>
+  <% }) %>
+</ul>
+<%- include('inc/bottom') %>
