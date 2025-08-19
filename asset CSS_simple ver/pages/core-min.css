@@ -1,0 +1,129 @@
+
+/* core-min.css — minimal, generic subset extracted from the provided CSS */
+/* Typography & base */
+body { font-size: 14px; }
+hr { border-top: 1px solid #a7a8af !important; padding-bottom: 10px; }
+.label { padding: .2em .5em .2em; }
+.middle-font-size { font-size: 1.2em; }
+.p-t-none { padding-top: 0 !important; }
+.text-l-t { text-decoration: line-through; }
+.text-2x { font-size: 2em; }
+.text-1-6 { font-size: 1.6em; }
+.text-1-2 { font-size: 1.2em; }
+.formula-note .mjx-chtml { text-align: left !important; }
+
+/* Modal */
+.modal-title { font-size: 18px; font-weight: 400; }
+.modal-footer { background-color: #fff; }
+.modal-header { padding: 30px 20px; background-color: #fff; }
+.modal-header .close { margin-top: -15px; }
+.modal-body { padding: 15px 20px 10px; }
+.modal-body .form-group { margin-bottom: 10px; }
+body.modal-open { position: inherit; overflow: visible; }
+body.modal-open .modal { overflow: hidden; }
+.modal-backdrop.fade { opacity: 0; }
+.modal-backdrop.fade.in { opacity: .5; background-color: #000; }
+
+/* Progress bar (Bootstrap 2 style kept for compatibility) */
+.progress {
+  overflow: hidden;
+  height: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+}
+.progress .bar {
+  width: 0%;
+  height: 100%;
+  float: left;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+  background-color: #0e90d2;
+  background-image: linear-gradient(to bottom, #149bdf, #0480be);
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
+  transition: width .6s ease;
+}
+.progress .bar + .bar {
+  box-shadow: inset 1px 0 0 rgba(0,0,0,0.15), inset 0 -1px 0 rgba(0,0,0,0.15);
+}
+.progress .bar-danger, .progress-danger .bar {
+  background-color: #ec0718;
+  background-image: linear-gradient(to bottom, #ec0718, #e81a1c);
+}
+.progress .bar-success, .progress-success .bar {
+  background-color: #0dd157;
+  background-image: linear-gradient(to bottom, #0dd157, #0db456);
+}
+.progress .bar-info, .progress-info .bar {
+  background-color: #0057ff;
+  background-image: linear-gradient(to bottom, #0057ff, #0649b4);
+}
+.progress .bar-warning, .progress-warning .bar {
+  background-color: #fadf0b;
+  background-image: linear-gradient(to bottom, #fadf0b, #fabb3a);
+}
+
+/* Tables */
+th[data-sort] { cursor: pointer; }
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
+  padding: 5px;
+  font-size: 14px;
+}
+.border-bottom-dashed { border: none; border-bottom: 1px dotted #ddd; }
+.border-bottom-dotted-gray { border: none; border-bottom: 1px dotted #757575; }
+.border-top-dotted-gray { border: none; border-top: 1px dotted #757575; }
+
+/* Pagination */
+.pagination > li > a,
+.pagination > li > span {
+  border: none;
+  font-size: 14px;
+  padding: 6px 9px;
+}
+.pagination > .disabled > a,
+.pagination > .disabled > span,
+.pagination > .disabled > a:focus,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > span:hover {
+  border: none;
+}
+
+/* Badges / marks */
+span.mark {
+  background-color: #131313;
+  color: #fff;
+  padding: 2px 3px;
+}
+
+/* Background utility */
+.bg-light-grey-trans { background-color: rgba(220,220,220,0.36); }
+
+/* Simple color number utilities */
+.green-number { background-color: rgba(0,255,0,0.05); color: #00660e; }
+.blue-number  { background-color: rgba(0,141,255,0.05); color: #0450b1; }
+.red-number   { background-color: rgba(255,0,0,0.05); color: #aa0000; }
+
+/* Small nav variation */
+.nav.nav-sm > li > a { padding: 6px 12px; }
+
+/* Responsive visibility helpers */
+@media (max-width: 767px) {
+  .hidden-xs { display: none !important; }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .hidden-sm { display: none !important; }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .hidden-md { display: none !important; }
+}
+@media (min-width: 1200px) {
+  .hidden-lg { display: none !important; }
+}

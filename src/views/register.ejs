@@ -1,9 +1,28 @@
-<%- include('inc/top', {title:'회원가입'}) %>
-<h2>회원가입</h2>
-<form method="post" action="/auth/register">
-  <input name="email" placeholder="Email" />
-  <input name="password" type="password" placeholder="Password" />
-  <input name="nickname" placeholder="Nickname" />
-  <button type="submit">Register</button>
-</form>
+<%- include('inc/top', { title: '회원가입' }) %>
+
+<div class="form-container">
+  <h2 class="form-title">회원가입</h2>
+  <form method="post" action="/auth/register" class="form-table-box">
+    <table class="form-table">
+      <tr>
+        <th><label for="email">이 메 일</label></th>
+        <td><input id="email" name="email" type="email" placeholder="Email" required /></td>
+      </tr>
+      <tr>
+        <th><label for="password">비밀번호</label></th>
+        <td><input id="password" name="password" type="password" placeholder="Password" required /></td>
+      </tr>
+      <tr>
+        <th><label for="nickname">닉 네 임</label></th>
+        <td><input id="nickname" name="nickname" placeholder="Nickname" required /></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="form-submit">
+          <button type="submit" class="btn-primary">회원가입</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
 <%- include('inc/bottom') %>

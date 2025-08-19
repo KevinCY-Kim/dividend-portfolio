@@ -1,7 +1,6 @@
-# Create a minimal CSS file based on the user's provided stylesheet, trimmed to generic essentials.
-css_content = """
-/* core-min.css — minimal, generic subset extracted from the provided CSS */
-/* Typography & base */
+
+/* core-min-extract.css — minimal subset extracted from provided stylesheet */
+/* 1) Base / Typography / Utilities */
 body { font-size: 14px; }
 hr { border-top: 1px solid #a7a8af !important; padding-bottom: 10px; }
 .label { padding: .2em .5em .2em; }
@@ -13,7 +12,7 @@ hr { border-top: 1px solid #a7a8af !important; padding-bottom: 10px; }
 .text-1-2 { font-size: 1.2em; }
 .formula-note .mjx-chtml { text-align: left !important; }
 
-/* Modal */
+/* 2) Modal */
 .modal-title { font-size: 18px; font-weight: 400; }
 .modal-footer { background-color: #fff; }
 .modal-header { padding: 30px 20px; background-color: #fff; }
@@ -25,7 +24,7 @@ body.modal-open .modal { overflow: hidden; }
 .modal-backdrop.fade { opacity: 0; }
 .modal-backdrop.fade.in { opacity: .5; background-color: #000; }
 
-/* Progress bar (Bootstrap 2 style kept for compatibility) */
+/* 3) Progress (Bootstrap 2-compatible) */
 .progress {
   overflow: hidden;
   height: 10px;
@@ -47,7 +46,8 @@ body.modal-open .modal { overflow: hidden; }
   transition: width .6s ease;
 }
 .progress .bar + .bar {
-  box-shadow: inset 1px 0 0 rgba(0,0,0,0.15), inset 0 -1px 0 rgba(0,0,0,0.15);
+  box-shadow: inset 1px 0 0 rgba(0,0,0,0.15),
+              inset 0 -1px 0 rgba(0,0,0,0.15);
 }
 .progress .bar-danger, .progress-danger .bar {
   background-color: #ec0718;
@@ -66,7 +66,7 @@ body.modal-open .modal { overflow: hidden; }
   background-image: linear-gradient(to bottom, #fadf0b, #fabb3a);
 }
 
-/* Tables */
+/* 4) Tables */
 th[data-sort] { cursor: pointer; }
 .table > tbody > tr > td,
 .table > tbody > tr > th,
@@ -77,11 +77,19 @@ th[data-sort] { cursor: pointer; }
   padding: 5px;
   font-size: 14px;
 }
+.table-tooltip > tbody > tr > td {
+  line-height: 1.1;
+  border: none;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-weight: 400;
+  font-size: 12px !important;
+}
 .border-bottom-dashed { border: none; border-bottom: 1px dotted #ddd; }
 .border-bottom-dotted-gray { border: none; border-bottom: 1px dotted #757575; }
 .border-top-dotted-gray { border: none; border-top: 1px dotted #757575; }
 
-/* Pagination */
+/* 5) Pagination */
 .pagination > li > a,
 .pagination > li > span {
   border: none;
@@ -97,39 +105,19 @@ th[data-sort] { cursor: pointer; }
   border: none;
 }
 
-/* Badges / marks */
-span.mark {
-  background-color: #131313;
-  color: #fff;
-  padding: 2px 3px;
-}
-
-/* Background utility */
-.bg-light-grey-trans { background-color: rgba(220,220,220,0.36); }
-
-/* Simple color number utilities */
+/* 6) Utilities / Small nav / Colors */
+span.mark { background-color: #131313; color: #fff; padding: 2px 3px; }
+.nav.nav-sm > li > a { padding: 6px 12px; }
+.bg-light-grey-trans,
+tr > td.bg-light-grey-transparent,
+tr > th.bg-light-grey-transparent { background-color: rgba(220,220,220,0.36); }
 .green-number { background-color: rgba(0,255,0,0.05); color: #00660e; }
 .blue-number  { background-color: rgba(0,141,255,0.05); color: #0450b1; }
 .red-number   { background-color: rgba(255,0,0,0.05); color: #aa0000; }
 
-/* Small nav variation */
-.nav.nav-sm > li > a { padding: 6px 12px; }
-
-/* Responsive visibility helpers */
-@media (max-width: 767px) {
-  .hidden-xs { display: none !important; }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .hidden-sm { display: none !important; }
-}
-@media (min-width: 992px) and (max-width: 1199px) {
-  .hidden-md { display: none !important; }
-}
-@media (min-width: 1200px) {
-  .hidden-lg { display: none !important; }
-}
-"""
-path = "/mnt/data/core-min.css"
-with open(path, "w", encoding="utf-8") as f:
-    f.write(css_content)
-path
+/* 7) Responsive helpers & print */
+@media (max-width: 767px) { .hidden-xs { display: none !important; } }
+@media (min-width: 768px) and (max-width: 991px) { .hidden-sm { display: none !important; } }
+@media (min-width: 992px) and (max-width: 1199px) { .hidden-md { display: none !important; } }
+@media (min-width: 1200px) { .hidden-lg { display: none !important; } }
+@media print { a[href]:after { content: none !important; } }

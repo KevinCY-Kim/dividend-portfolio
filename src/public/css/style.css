@@ -1,0 +1,80 @@
+/* 전체 레이아웃 기본 */
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #f7f9fc;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* 헤더 / 푸터 */
+header, footer {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 15px 20px;
+  text-align: center;
+}
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+footer {
+  font-size: 0.9rem;
+}
+
+/* 회원가입 폼 */
+.form-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  color: #2c3e50;
+}
+
+.form-box .form-group {
+  margin-bottom: 15px;
+}
+
+.form-box label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-box input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccd1d9;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.form-box input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 4px rgba(52,152,219,0.4);
+}
+
+/* 버튼 */
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background-color: #3498db;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+}
