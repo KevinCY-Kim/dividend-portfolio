@@ -1,0 +1,26 @@
+<%- include('inc/top', { title: '게시글 삭제' }) %>
+
+<div class="board-container">
+  <h2 class="board-title">게시글 삭제</h2>
+  <p>정말 이 글을 삭제하시겠습니까?</p>
+  <table class="form-table">
+    <tr>
+      <th>제목</th>
+      <td><%= post.title %></td>
+    </tr>
+    <tr>
+      <th>내용</th>
+      <td><%= post.body %></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="form-submit">
+        <form method="post" action="/board/<%= post._id %>?_method=DELETE">
+          <button type="submit" class="btn-danger">삭제</button>
+        </form>
+        <a href="/board" class="btn-secondary">취소</a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<%- include('inc/bottom') %>

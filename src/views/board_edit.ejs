@@ -1,0 +1,24 @@
+<%- include('inc/top', {title:'게시판 수정'}) %>
+
+<div class="board-container">
+  <h2 class="board-title">게시글 수정</h2>
+  <form method="post" action="/board/<%= post._id %>">
+    <table class="form-table">
+      <tr>
+        <th><label for="title">제목</label></th>
+        <td><input id="title" name="title" value="<%= post.title %>" required /></td>
+      </tr>
+      <tr>
+        <th><label for="body">내용</label></th>
+        <td><textarea id="body" name="body" required><%= post.body %></textarea></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="form-submit">
+          <button type="submit" class="btn-primary">수정</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+<%- include('inc/bottom') %>

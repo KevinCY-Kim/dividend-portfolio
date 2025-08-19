@@ -1,0 +1,16 @@
+<%- include('inc/top', {title:'게시글 내용'}) %>
+
+<div class="board-wrapper">
+  <div class="board-detail-container">
+    <h2 class="board-title"><%= post.title %></h2>
+    <p class="board-meta">
+      작성일: <%= new Date(post.createdAt).toLocaleString('ko-KR') %>
+    </p>
+    <div class="board-body">
+      <p><%= post.body %></p>
+    </div>
+    <a href="/board" class="btn-secondary">목록으로</a>
+  </div>
+</div>
+
+<%- include('inc/bottom') %>

@@ -30,8 +30,15 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // 미들웨어
 app.use(cors());
 app.use(morgan("dev"));
+
+// 바디 파싱
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// method-override (PUT, DELETE 같은 브라우저 form 요청 처리)
+import methodOverride from "method-override";
+app.use(express.urlencoded({ extended: true })); // form 데이터 파싱
+app.use(methodOverride("_method")); // 반드시 body parser 뒤
 
 // ✅ 세션 & MongoStore (로그인 세션 유지)
 app.use(

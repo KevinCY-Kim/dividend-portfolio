@@ -1,14 +1,74 @@
 <%- include('inc/top', {title:'게시판'}) %>
-<h2>게시판</h2>
-<form method="post" action="/board">
-  <input name="title" placeholder="제목" />
-  <textarea name="body" placeholder="내용"></textarea>
-  <button type="submit">등록</button>
-</form>
-<hr />
-<ul>
-  <% (posts||[]).forEach(p=> { %>
-    <li><b><%= p.title %></b> - <%= new Date(p.createdAt).toLocaleString('ko-KR') %><br/><%= p.body %></li>
-  <% }) %>
-</ul>
+
+<div class="board-wrapper">
+  <!-- 글 작성 영역 (변경 없음) -->
+  <div class="board-form-container">
+    <h2 class="board-title">게시판</h2>
+    <form method="post" action="/board" class="board-form">
+      <table class="form-table">
+        <tr>
+          <th><label for="title">제목</label></th>
+          <td><input id="title" name="title" placeholder="제목" required /></td>
+        </tr>
+        <tr>
+          <th><label for="body">내용</label></th>
+          <td><textarea id="body" name="body" placeholder="내용" required></textarea></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="form-submit">
+            <button type="submit" class="btn-primary">등록</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+  <hr />
+
+  <!-- 글 목록 영역 -->
+  <div class="board-list-container">
+    <table class="board-table">
+      <thead>
+        <tr>
+          <th style="width:50px;">번호</th>
+          <th style="width:350px;">제목</th>
+          <th style="width:120px;">작성일</th>
+          <th style="width:150px;">관리</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% 
+          const totalPosts = posts.length;
+          (posts || []).forEach((p, idx) => { 
+             const now = new Date();
+             const postDate = new Date(p.createdAt);
+             const isToday = postDate.toDateString() === now.toDateString();
+             const displayDate = isToday
+               ? postDate.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })
+               : postDate.toLocaleDateString('ko-KR', { month: '2-digit', day: '2-digit' });
+        %>
+          <tr>
+            <td><%= totalPosts - ((page - 1) * limit + idx) %></td>
+            <td><a href="/board/<%= p._id %>"><%= p.title %></a></td>
+            <td><%= displayDate %></td>
+            <td>
+              <a href="/board/<%= p._id %>/edit" class="btn-edit">수정</a>
+              <form method="post" action="/board/<%= p._id %>?_method=DELETE" style="display:inline;">
+                <button type="submit" class="btn-delete">삭제</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <!-- 페이지네이션 (변경 없음) -->
+    <div class="pagination">
+      <% for (let i = 1; i <= totalPages; i++) { %>
+        <a href="/board?page=<%= i %>" class="<%= page === i ? 'active' : '' %>"><%= i %></a>
+      <% } %>
+    </div>
+  </div>
+</div>
+
 <%- include('inc/bottom') %>
