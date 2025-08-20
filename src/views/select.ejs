@@ -1,8 +1,282 @@
 <%- include('inc/top', {title:'배당주 선택'}) %>
+<<<<<<< HEAD
 <h2>배당주 선택</h2>
 <select id="ticker-select"></select>
 <button id="add-btn" type="button">추가</button>
 
 <h3>월별 배당 차트</h3>
 <iframe src="/charts/portfolio" width="100%" height="420" style="border:0;"></iframe>
+=======
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>배당주 선택</h2>
+    <a href="/price-admin" class="btn btn-outline-primary btn-sm">
+      📈 가격 관리
+    </a>
+  </div>
+  
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <label for="index-select" class="form-label">인덱스 선택:</label>
+      <select id="index-select" class="form-select">
+        <option value="">전체 인덱스</option>
+        <option value="NASDAQ-100">NASDAQ-100</option>
+        <option value="S&P 500">S&P 500</option>
+        <option value="US ETF">US ETF</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="ticker-select" class="form-label">종목 선택:</label>
+      <select id="ticker-select" class="form-select" disabled>
+        <option value="">먼저 인덱스를 선택하세요</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <button id="add-btn" type="button" class="btn btn-primary" disabled>포트폴리오에 추가</button>
+    </div>
+  </div>
+
+  <div id="stock-info" class="mb-4" style="display: none;">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title" id="stock-name"></h5>
+        <p class="card-text">
+          <strong>티커:</strong> <span id="stock-ticker"></span><br>
+          <strong>인덱스:</strong> <span id="stock-index"></span><br>
+          <strong>현재가:</strong> <span id="stock-price"></span><br>
+          <strong>배당월:</strong> <span id="dividend-months"></span><br>
+          <strong>연간 배당금:</strong> <span id="annual-dividend"></span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="mb-3">월별 배당 차트</h3>
+  <div id="chart-container">
+    <canvas id="dividend-chart" width="400" height="200"></canvas>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let dividendChart;
+let stocksData = [];
+let filteredStocks = [];
+
+// 페이지 로드 시 종목 데이터 가져오기
+document.addEventListener('DOMContentLoaded', async function() {
+  try {
+    const response = await fetch('/stocks');
+    stocksData = await response.json();
+    filteredStocks = [...stocksData];
+    
+    // 인덱스별 통계 표시
+    displayIndexStats();
+  } catch (error) {
+    console.error('종목 데이터를 가져오는데 실패했습니다:', error);
+  }
+});
+
+// 인덱스별 통계 표시
+function displayIndexStats() {
+  const stats = {};
+  stocksData.forEach(stock => {
+    if (!stats[stock.index]) {
+      stats[stock.index] = { count: 0, totalDividends: 0 };
+    }
+    stats[stock.index].count++;
+    stats[stock.index].totalDividends += stock.dividends2024.reduce((sum, d) => sum + d.amount, 0);
+  });
+  
+  console.log('📊 인덱스별 통계:', stats);
+}
+
+// 인덱스 선택 시 이벤트
+document.getElementById('index-select').addEventListener('change', function() {
+  const selectedIndex = this.value;
+  const tickerSelect = document.getElementById('ticker-select');
+  const addBtn = document.getElementById('add-btn');
+  const stockInfo = document.getElementById('stock-info');
+  
+  // 종목 선택 초기화
+  tickerSelect.innerHTML = '<option value="">종목을 선택하세요</option>';
+  tickerSelect.disabled = false;
+  addBtn.disabled = true;
+  stockInfo.style.display = 'none';
+  
+  if (dividendChart) {
+    dividendChart.destroy();
+  }
+  
+  // 인덱스에 따라 종목 필터링
+  if (selectedIndex) {
+    filteredStocks = stocksData.filter(stock => stock.index === selectedIndex);
+  } else {
+    filteredStocks = [...stocksData];
+  }
+  
+  // 종목 선택 옵션 채우기
+  filteredStocks.forEach(stock => {
+    const option = document.createElement('option');
+    option.value = stock.ticker;
+    option.textContent = `${stock.ticker} - ${stock.name}`;
+    tickerSelect.appendChild(option);
+  });
+  
+  // 인덱스 선택 후 안내 메시지
+  if (selectedIndex) {
+    tickerSelect.innerHTML = `<option value="">${selectedIndex}에서 종목을 선택하세요</option>`;
+    filteredStocks.forEach(stock => {
+      const option = document.createElement('option');
+      option.value = stock.ticker;
+      option.textContent = `${stock.ticker} - ${stock.name}`;
+      tickerSelect.appendChild(option);
+    });
+  }
+});
+
+// 종목 선택 시 이벤트
+document.getElementById('ticker-select').addEventListener('change', function() {
+  const selectedTicker = this.value;
+  const addBtn = document.getElementById('add-btn');
+  const stockInfo = document.getElementById('stock-info');
+  
+  if (selectedTicker) {
+    addBtn.disabled = false;
+    showStockInfo(selectedTicker);
+    updateDividendChart(selectedTicker);
+  } else {
+    addBtn.disabled = true;
+    stockInfo.style.display = 'none';
+    if (dividendChart) {
+      dividendChart.destroy();
+    }
+  }
+});
+
+// 종목 정보 표시
+function showStockInfo(ticker) {
+  const stock = filteredStocks.find(s => s.ticker === ticker);
+  if (!stock) return;
+  
+  document.getElementById('stock-name').textContent = stock.name;
+  document.getElementById('stock-ticker').textContent = stock.ticker;
+  document.getElementById('stock-index').textContent = stock.index;
+  document.getElementById('stock-price').textContent = `$${stock.price}`;
+  
+  // 배당월 정보 가져오기
+  const dividendMonths = getDividendMonths(stock);
+  document.getElementById('dividend-months').textContent = dividendMonths.join(', ');
+  
+  // 연간 배당금 계산
+  const annualDividend = calculateAnnualDividend(stock);
+  document.getElementById('annual-dividend').textContent = `$${annualDividend.toFixed(2)}`;
+  
+  document.getElementById('stock-info').style.display = 'block';
+}
+
+// 배당월 정보 가져오기
+function getDividendMonths(stock) {
+  if (!stock.dividends2024 || stock.dividends2024.length === 0) {
+    return ['배당 없음'];
+  }
+  
+  const monthNames = [
+    '1월', '2월', '3월', '4월', '5월', '6월',
+    '7월', '8월', '9월', '10월', '11월', '12월'
+  ];
+  
+  return stock.dividends2024
+    .map(d => monthNames[d.month - 1])
+    .sort((a, b) => monthNames.indexOf(a) - monthNames.indexOf(b));
+}
+
+// 연간 배당금 계산
+function calculateAnnualDividend(stock) {
+  if (!stock.dividends2024 || stock.dividends2024.length === 0) {
+    return 0;
+  }
+  
+  return stock.dividends2024.reduce((sum, d) => sum + d.amount, 0);
+}
+
+// 배당 차트 업데이트
+function updateDividendChart(ticker) {
+  if (dividendChart) {
+    dividendChart.destroy();
+  }
+  
+  const ctx = document.getElementById('dividend-chart').getContext('2d');
+  
+  // 월별 배당 데이터 준비
+  const monthlyData = new Array(12).fill(0);
+  const monthLabels = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+  
+  const stock = filteredStocks.find(s => s.ticker === ticker);
+  if (stock && stock.dividends2024) {
+    stock.dividends2024.forEach(dividend => {
+      monthlyData[dividend.month - 1] = dividend.amount;
+    });
+  }
+  
+  dividendChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: monthLabels,
+      datasets: [{
+        label: '배당금 ($)',
+        data: monthlyData,
+        backgroundColor: monthlyData.map(value => value > 0 ? 'rgba(54, 162, 235, 0.8)' : 'rgba(200, 200, 200, 0.3)'),
+        borderColor: monthlyData.map(value => value > 0 ? 'rgba(54, 162, 235, 1)' : 'rgba(200, 200, 200, 0.5)'),
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: {
+          display: true,
+          text: `${ticker} 월별 배당 차트`
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const value = context.parsed.y;
+              return value > 0 ? `배당금: $${value.toFixed(2)}` : '배당 없음';
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: '배당금 ($)'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: '월'
+          }
+        }
+      }
+    }
+  });
+}
+
+// 포트폴리오에 추가 버튼 이벤트
+document.getElementById('add-btn').addEventListener('click', function() {
+  const selectedTicker = document.getElementById('ticker-select').value;
+  if (selectedTicker) {
+    // 여기에 포트폴리오 추가 로직 구현
+    alert(`${selectedTicker}가 포트폴리오에 추가되었습니다.`);
+  }
+});
+</script>
+
+>>>>>>> update for dividend
 <%- include('inc/bottom') %>

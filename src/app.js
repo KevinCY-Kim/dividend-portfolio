@@ -19,6 +19,12 @@ import portfolioRoutes from "./routes/portfolio.js";
 import chartsRoutes from "./routes/charts.js";
 import chatRoutes from "./routes/chat.js";
 
+<<<<<<< HEAD
+=======
+// 가격 업데이트 서비스 임포트
+import priceUpdateService from "./services/priceUpdateService.js";
+
+>>>>>>> update for dividend
 dotenv.config();
 
 // ✅ MongoDB 연결
@@ -83,6 +89,14 @@ app.use((err, req, res, next) => {
 
 // 서버 실행
 const port = process.env.PORT || 3000;
-app.listen(port, () =>
-  console.log(`✅ Server running on http://localhost:${port}`)
-);
+app.listen(port, () => {
+  console.log(`✅ Server running on http://localhost:${port}`);
+  
+  // 🚀 가격 업데이트 서비스 시작
+  try {
+    priceUpdateService.start();
+    console.log("✅ 주식 가격 업데이트 서비스가 시작되었습니다.");
+  } catch (error) {
+    console.error("❌ 가격 업데이트 서비스 시작 실패:", error);
+  }
+});

@@ -1,0 +1,160 @@
+<%- include('inc/top', {title:'주식 가격 관리'}) %>
+
+<div class="container mt-4">
+  <h2 class="mb-4">📈 주식 가격 관리</h2>
+  
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">🔄 자동 가격 업데이트 상태</h5>
+        </div>
+        <div class="card-body">
+          <div id="service-status">
+            <p>서비스 상태를 확인하는 중...</p>
+          </div>
+          <button id="refresh-status" class="btn btn-outline-primary btn-sm">상태 새로고침</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">⚡ 수동 가격 업데이트</h5>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label for="ticker-input" class="form-label">종목 티커:</label>
+            <input type="text" id="ticker-input" class="form-control" placeholder="예: AAPL, MSFT">
+          </div>
+          <button id="update-single" class="btn btn-warning btn-sm me-2">개별 업데이트</button>
+          <button id="update-all" class="btn btn-danger btn-sm">전체 업데이트</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">📊 가격 업데이트 로그</h5>
+        </div>
+        <div class="card-body">
+          <div id="update-log" class="bg-light p-3 rounded" style="max-height: 300px; overflow-y: auto;">
+            <p class="text-muted">업데이트 로그가 여기에 표시됩니다...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// 서비스 상태 확인
+async function checkServiceStatus() {
+  try {
+    const response = await fetch('/stocks/price-update-status');
+    const status = await response.json();
+    
+    const statusDiv = document.getElementById('service-status');
+    statusDiv.innerHTML = `
+      <p><strong>서비스 상태:</strong> <span class="badge bg-success">${status.serviceStatus}</span></p>
+      <p><strong>실행 중:</strong> <span class="badge ${status.isRunning ? 'bg-warning' : 'bg-secondary'}">${status.isRunning ? '예' : '아니오'}</span></p>
+      <p><strong>마지막 업데이트:</strong> ${status.lastUpdate ? new Date(status.lastUpdate).toLocaleString('ko-KR') : '없음'}</p>
+    `;
+  } catch (error) {
+    console.error('상태 확인 실패:', error);
+    document.getElementById('service-status').innerHTML = '<p class="text-danger">상태 확인 실패</p>';
+  }
+}
+
+// 로그 추가
+function addLog(message, type = 'info') {
+  const logDiv = document.getElementById('update-log');
+  const timestamp = new Date().toLocaleString('ko-KR');
+  const logEntry = document.createElement('div');
+  logEntry.className = `mb-2 p-2 rounded ${type === 'error' ? 'bg-danger text-white' : type === 'success' ? 'bg-success text-white' : 'bg-info text-white'}`;
+  logEntry.innerHTML = `<small>${timestamp}</small><br>${message}`;
+  
+  logDiv.appendChild(logEntry);
+  logDiv.scrollTop = logDiv.scrollHeight;
+}
+
+// 개별 종목 가격 업데이트
+async function updateSinglePrice(ticker) {
+  if (!ticker) {
+    addLog('티커를 입력해주세요.', 'error');
+    return;
+  }
+  
+  try {
+    addLog(`${ticker} 가격 업데이트 시작...`, 'info');
+    
+    const response = await fetch(`/stocks/update-price/${ticker}`, {
+      method: 'POST'
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      addLog(`${ticker} 가격 업데이트 성공: $${result.price}`, 'success');
+    } else {
+      addLog(`${ticker} 가격 업데이트 실패: ${result.error || '알 수 없는 오류'}`, 'error');
+    }
+  } catch (error) {
+    addLog(`${ticker} 가격 업데이트 오류: ${error.message}`, 'error');
+  }
+}
+
+// 전체 가격 업데이트
+async function updateAllPrices() {
+  try {
+    addLog('전체 가격 업데이트 시작...', 'info');
+    
+    const response = await fetch('/stocks/update-all-prices', {
+      method: 'POST'
+    });
+    
+    const result = await response.json();
+    addLog(result.message, 'success');
+    
+    // 5초 후 상태 새로고침
+    setTimeout(checkServiceStatus, 5000);
+  } catch (error) {
+    addLog(`전체 가격 업데이트 오류: ${error.message}`, 'error');
+  }
+}
+
+// 이벤트 리스너 등록
+document.addEventListener('DOMContentLoaded', function() {
+  // 초기 상태 확인
+  checkServiceStatus();
+  
+  // 상태 새로고침 버튼
+  document.getElementById('refresh-status').addEventListener('click', checkServiceStatus);
+  
+  // 개별 업데이트 버튼
+  document.getElementById('update-single').addEventListener('click', function() {
+    const ticker = document.getElementById('ticker-input').value.trim().toUpperCase();
+    updateSinglePrice(ticker);
+  });
+  
+  // 전체 업데이트 버튼
+  document.getElementById('update-all').addEventListener('click', updateAllPrices);
+  
+  // Enter 키로 개별 업데이트
+  document.getElementById('ticker-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      const ticker = this.value.trim().toUpperCase();
+      updateSinglePrice(ticker);
+    }
+  });
+});
+
+// 30초마다 상태 자동 새로고침
+setInterval(checkServiceStatus, 30000);
+</script>
+
+<%- include('inc/bottom') %>

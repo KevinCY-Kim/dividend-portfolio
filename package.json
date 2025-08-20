@@ -9,6 +9,10 @@
     "seed": "node scripts/load_dividends_from_csv.js"
   },
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "axios": "^1.11.0",
+>>>>>>> update for dividend
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^5.1.0",
     "cors": "^2.8.5",
@@ -20,6 +24,10 @@
     "method-override": "^3.0.0",
     "mongoose": "^8.5.3",
     "morgan": "^1.10.0",
+<<<<<<< HEAD
+=======
+    "node-cron": "^4.2.1",
+>>>>>>> update for dividend
     "openai": "^4.57.0",
     "validator": "^13.11.0"
   },

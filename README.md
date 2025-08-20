@@ -127,7 +127,10 @@ dividend_portfolio> db.stocks.findOne()
 npm run dev
 성공 시
 ✅ MongoDB connected
+<<<<<<< HEAD
 ✅ Server running on http://localhost:3000
+=======
+>>>>>>> update for dividend
 ```
 
 ---
