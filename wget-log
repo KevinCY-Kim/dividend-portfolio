@@ -1,6 +1,0 @@
---2025-08-20 16:03:16--  https://cursor.com/api/download?platform=linux-x64
-Resolving cursor.com (cursor.com)... 76.76.21.21
-Connecting to cursor.com (cursor.com)|76.76.21.21|:443... connected.
-HTTP request sent, awaiting response... 500 Internal Server Error
-2025-08-20 16:03:16 ERROR 500: Internal Server Error.
-
