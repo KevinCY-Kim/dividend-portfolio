@@ -166,3 +166,4 @@ class PriceUpdateService {
 }
 
 export default new PriceUpdateService();
+

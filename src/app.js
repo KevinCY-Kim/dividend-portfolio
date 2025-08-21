@@ -18,6 +18,7 @@ import stocksRoutes from "./routes/stocks.js";
 import portfolioRoutes from "./routes/portfolio.js";
 import chartsRoutes from "./routes/charts.js";
 import chatRoutes from "./routes/chat.js";
+import chatbotRoutes from "./routes/chatbot.js";
 
 <<<<<<< HEAD
 =======
@@ -75,6 +76,7 @@ app.use("/stocks", stocksRoutes);
 app.use("/portfolio", portfolioRoutes);
 app.use("/charts", chartsRoutes);
 app.use("/api/chat", chatRoutes);
+app.use("/api/chatbot", chatbotRoutes);
 
 // 404 핸들러
 app.use((req, res) => {

@@ -1,0 +1,268 @@
+<%- include('inc/top', {title:'포트폴리오'}) %>
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>📊 내 포트폴리오</h2>
+    <div>
+      <a href="/select" class="btn btn-outline-primary btn-sm me-2">
+        🔍 종목 추가
+      </a>
+      <a href="/price-admin" class="btn btn-outline-secondary btn-sm">
+        📈 가격 관리
+      </a>
+    </div>
+  </div>
+
+  <!-- 포트폴리오 요약 -->
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">총 포트폴리오 가치</h5>
+          <h3 class="text-primary" id="total-value">$0</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">총 배당금</h5>
+          <h3 class="text-success" id="total-dividend">$0</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">손익</h5>
+          <h3 class="text-info" id="total-gain-loss">$0</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">보유 종목 수</h5>
+          <h3 class="text-warning" id="total-stocks">0</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 포트폴리오 종목 목록 -->
+  <div class="card mb-4">
+    <div class="card-header">
+      <h5 class="mb-0">보유 종목</h5>
+    </div>
+    <div class="card-body">
+      <div id="portfolio-stocks">
+        <p class="text-muted">포트폴리오에 종목이 없습니다. <a href="/select">종목을 추가</a>해보세요.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 월별 배당 차트 -->
+  <div class="card">
+    <div class="card-header">
+      <h5 class="mb-0">월별 포트폴리오 배당 차트</h5>
+    </div>
+    <div class="card-body">
+      <canvas id="portfolio-chart" width="400" height="200"></canvas>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let portfolioChart;
+let portfolioData = null;
+
+// 페이지 로드 시 포트폴리오 데이터 가져오기
+document.addEventListener('DOMContentLoaded', async function() {
+  try {
+    const response = await fetch('/portfolio');
+    portfolioData = await response.json();
+    
+    updatePortfolioDisplay();
+    updatePortfolioChart();
+  } catch (error) {
+    console.error('포트폴리오 데이터를 가져오는데 실패했습니다:', error);
+  }
+});
+
+// 포트폴리오 표시 업데이트
+function updatePortfolioDisplay() {
+  if (!portfolioData || !portfolioData.stocks || portfolioData.stocks.length === 0) {
+    document.getElementById('portfolio-stocks').innerHTML = 
+      '<p class="text-muted">포트폴리오에 종목이 없습니다. <a href="/select">종목을 추가</a>해보세요.</p>';
+    return;
+  }
+
+  // 요약 정보 업데이트
+  document.getElementById('total-value').textContent = `$${portfolioData.totalValue.toFixed(2)}`;
+  document.getElementById('total-dividend').textContent = `$${portfolioData.totalDividend.toFixed(2)}`;
+  document.getElementById('total-gain-loss').textContent = `$${portfolioData.totalGainLoss.toFixed(2)}`;
+  document.getElementById('total-stocks').textContent = portfolioData.stocks.length;
+
+  // 종목 목록 테이블 생성
+  const stocksHtml = `
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>종목</th>
+            <th>티커</th>
+            <th>보유 주식 수</th>
+            <th>평균 매수가</th>
+            <th>현재가</th>
+            <th>현재 가치</th>
+            <th>손익</th>
+            <th>손익률</th>
+            <th>배당 수익률</th>
+            <th>액션</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${portfolioData.stocks.map(stock => `
+            <tr>
+              <td>
+                <strong>${stock.name}</strong><br>
+                <small class="text-muted">${stock.index}</small>
+              </td>
+              <td><code>${stock.ticker}</code></td>
+              <td>${stock.shares.toLocaleString()}</td>
+              <td>$${stock.averagePrice.toFixed(2)}</td>
+              <td>$${stock.currentPrice.toFixed(2)}</td>
+              <td>$${stock.currentValue.toFixed(2)}</td>
+              <td class="${stock.gainLoss >= 0 ? 'text-success' : 'text-danger'}">
+                $${stock.gainLoss.toFixed(2)}
+              </td>
+              <td class="${stock.gainLossPercent >= 0 ? 'text-success' : 'text-danger'}">
+                ${stock.gainLossPercent}%
+              </td>
+              <td>${stock.dividendYield}%</td>
+              <td>
+                <button class="btn btn-danger btn-sm" onclick="removeStock('${stock.ticker}')">
+                  제거
+                </button>
+              </td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  document.getElementById('portfolio-stocks').innerHTML = stocksHtml;
+}
+
+// 포트폴리오 차트 업데이트
+function updatePortfolioChart() {
+  if (portfolioChart) {
+    portfolioChart.destroy();
+  }
+
+  if (!portfolioData || !portfolioData.stocks || portfolioData.stocks.length === 0) {
+    return;
+  }
+
+  const ctx = document.getElementById('portfolio-chart').getContext('2d');
+  
+  // 월별 배당 데이터 준비
+  const monthlyData = new Array(12).fill(0);
+  const monthLabels = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+  
+  // 각 종목의 월별 배당을 주식 수에 곱해서 누적
+  portfolioData.stocks.forEach(stock => {
+    // 여기서는 간단한 예시로 고정 배당금 사용
+    // 실제로는 Stock 모델에서 가져와야 함
+    const monthlyDividend = 0.4; // 예시 값
+    monthlyData[0] += monthlyDividend * stock.shares;  // 1월
+    monthlyData[2] += monthlyDividend * stock.shares;  // 3월
+    monthlyData[4] += monthlyDividend * stock.shares;  // 5월
+    monthlyData[7] += monthlyDividend * stock.shares;  // 8월
+    monthlyData[10] += monthlyDividend * stock.shares; // 11월
+  });
+
+  portfolioChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: monthLabels,
+      datasets: [{
+        label: '포트폴리오 월별 배당금 ($)',
+        data: monthlyData,
+        backgroundColor: 'rgba(75, 192, 192, 0.8)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: {
+          display: true,
+          text: '포트폴리오 월별 배당 차트'
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const value = context.parsed.y;
+              return value > 0 ? `배당금: $${value.toFixed(2)}` : '배당 없음';
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: '배당금 ($)'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: '월'
+          }
+        }
+      }
+    }
+  });
+}
+
+// 종목 제거
+async function removeStock(ticker) {
+  if (!confirm(`정말로 ${ticker}를 포트폴리오에서 제거하시겠습니까?`)) {
+    return;
+  }
+
+  try {
+    const response = await fetch(`/portfolio/remove/${ticker}`, {
+      method: 'DELETE'
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      alert(result.message);
+      
+      // 포트폴리오 데이터 새로고침
+      const portfolioResponse = await fetch('/portfolio');
+      portfolioData = await portfolioResponse.json();
+      
+      // 화면 업데이트
+      updatePortfolioDisplay();
+      updatePortfolioChart();
+    } else {
+      alert('오류: ' + result.error);
+    }
+  } catch (error) {
+    console.error('종목 제거 오류:', error);
+    alert('종목 제거에 실패했습니다.');
+  }
+}
+</script>
+
+<%- include('inc/bottom') %>

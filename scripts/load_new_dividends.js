@@ -95,3 +95,4 @@ for (const [index, stat] of Object.entries(stats)) {
 }
 
 process.exit(0);
+
