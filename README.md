@@ -1,14 +1,14 @@
-### 📈 Dividend Portfolio MVP
+### Dividend Portfolio MVP
 
 배당주 데이터를 기반으로 월별 균등한 현금흐름 포트폴리오를 설계하는 웹 애플리케이션.
 Node.js + Express + MongoDB + EJS 기반으로 프론트/백엔드 구성.
 
 ---
 
-## 🚀 주요 기능
+## 주요 기능
 
 - 배당주 데이터 관리 (MongoDB 기반)
-- 월별 균등 배당 포트폴리오 추천 (Greedy 최적화)
+- 월별 배당 포트폴리오 추천
 - 종목 선택 및 배당 시각화 차트
 - 로그인/회원가입 (세션 기반 인증)
 - 게시판 (글 작성/확인/수정/삭제)
@@ -18,7 +18,7 @@ Node.js + Express + MongoDB + EJS 기반으로 프론트/백엔드 구성.
 
 ---
 
-## 📂 프로젝트 구조
+## 프로젝트 구조
 ```bash
 dividend-portfolio/
 ├─ .env.example
@@ -73,7 +73,7 @@ dividend-portfolio/
 
 ---
 
-### ⚙️ 설치 및 실행
+### 설치 및 실행
 
 ## 1. 클론 & 설치
 ```bash
@@ -126,22 +126,22 @@ dividend_portfolio> db.stocks.findOne()
 ```bash
 npm run dev
 성공 시
-✅ MongoDB connected
+MongoDB connected
 <<<<<<< HEAD
-✅ Server running on http://localhost:3000
+Server running on http://localhost:3000
 =======
 >>>>>>> update for dividend
 ```
 
 ---
 
-### 🗄️ 데이터 적재 (예: 2024 배당 데이터)
+### 🗄데이터 적재 (예: 2024 배당 데이터)
 크롤링/수집된 CSV를 MongoDB에 업로드:
-node scripts/load_dividends_from_csv.js data/dividends_2024.csv
+node scripts/load_dividends_from_csv.js data/dividends.csv
 
 ---
 
-### 🛠️ 개발 스택
+### 개발 스택
 
 백엔드: Node.js, Express
 DB: MongoDB (Mongoose ODM)
