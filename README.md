@@ -38,60 +38,97 @@ Node.js + Express + MongoDB + EJS 기반으로 프론트/백엔드 구성.
 
 ```bash
 dividend-portfolio/
-├─ .env.example
-├─ .gitignore
-├─ package.json
-├─ README.md
-├─ server.log
-├─ src/
-│ ├─ app.js                    # 서버 엔트리 + 관리자 API
-│ ├─ config/
-│ │ └─ db.js                   # MongoDB 연결
-│ ├─ models/
-│ │ ├─ Stock.js                # 배당/가격 데이터
-│ │ ├─ User.js                 # 유저(로그인/회원가입)
-│ │ └─ Post.js                 # 게시판 글 (작성자 정보 포함)
-│ ├─ services/
-│ │ ├─ optimizer.js            # 월별 균등 커버리지 Greedy 최적화
-│ │ └─ pricing.js              # 시가/배당수익률 계산 유틸
-│ ├─ routes/
-│ │ ├─ index.js                # 홈/메뉴
-│ │ ├─ auth.js                 # 로그인/회원가입
-│ │ ├─ board.js                # 게시판
-│ │ ├─ stocks.js               # 종목 선택/조회 API
-│ │ ├─ portfolio.js            # 포트폴리오 추천 API
-│ │ ├─ charts.js               # 차트 iframe 라우트
-│ │ └─ chat.js                 # OpenAI 챗봇 API
-│ ├─ controllers/
-│ │ ├─ authController.js
-│ │ ├─ boardController.js      # 로그인 체크 + 작성자 권한 관리
-│ │ ├─ portfolioController.js
-│ │ └─ stockController.js
-│ ├─ views/                    # EJS 뷰
-│ │ ├─ inc/
-│ │ │ ├─ top.ejs              # 공통 헤더 (동적 로그인 상태)
-│ │ │ ├─ bottom.ejs           # 공통 푸터 (FAQ, 약관 링크)
-│ │ │ └─ 404.ejs
-│ │ ├─ home.ejs               # 홈페이지 (통합 네비게이션)
-│ │ ├─ select.ejs             # 배당주 선택 페이지 (UI 개선)
-│ │ ├─ login.ejs
-│ │ ├─ register.ejs
-│ │ ├─ board.ejs              # 게시판 (로그인 체크)
-│ │ ├─ board_detail.ejs       # 게시글 상세
-│ │ ├─ board_edit.ejs         # 게시글 수정
-│ │ ├─ board_delete.ejs       # 게시글 삭제
-│ │ ├─ chatbot.ejs            # 챗봇 페이지
-│ │ ├─ chart_frame.ejs        # 차트 전용 iframe
-│ │ └─ price-admin.ejs        # 관리자 모드 (3개 탭)
-│ └─ public/                   # 정적리소스
-│   ├─ css/
-│   │ └─ main.css
-│   ├─ js/
-│   │ ├─ main.js
-│   │ └─ chatbot.js           # 고객응대 위젯 (가독성 개선)
-│   └─ img/                   # 이미지 저장
-└─ scripts/
-  └─ load_dividends_from_csv.js # CSV → MongoDB 업로드
+├─ .env                          # 환경 변수 (개발용)
+├─ .env.example                  # 환경 변수 템플릿
+├─ .gitignore                    # Git 제외 파일 목록
+├─ LICENSE                       # MIT 라이선스
+├─ README.md                     # 프로젝트 문서
+├─ package.json                  # Node.js 의존성 및 스크립트
+├─ package-lock.json             # 의존성 잠금 파일
+├─ server.log                    # 서버 실행 로그
+├─ data/                         # CSV 데이터 파일
+│  ├─ nasdaq100_dividends_events.csv
+│  ├─ sp500_dividends_events.csv
+│  └─ us_etf_dividends_events.csv
+├─ docs/                         # 프로젝트 문서
+│  └─ screenshots/               # 스크린샷 이미지
+│     ├─ 1. main1.png           # 메인 페이지 1
+│     ├─ 2. main2.png           # 메인 페이지 2
+│     ├─ 3. select1.png         # 배당주 선택 1
+│     ├─ 4. select2.png         # 배당주 선택 2
+│     ├─ 5. select3.png         # 배당주 선택 3
+│     ├─ 6. chatbot.png         # 챗봇 인터페이스
+│     ├─ 7. Board.png           # 게시판 메인
+│     ├─ 8. board2.png          # 게시판 상세 1
+│     ├─ 9. board3.png          # 게시판 상세 2
+│     ├─ 10. login.png          # 로그인 화면
+│     ├─ 11. logout.png         # 로그아웃 상태
+│     ├─ 13. register.png       # 회원가입 화면
+│     ├─ 14. maintanace_mode.png    # 관리자 모드 1
+│     ├─ 15. maintanace_mode2.png   # 관리자 모드 2
+│     ├─ 16. maintanace_mode3.png   # 관리자 모드 3
+│     └─ 17. git_cowork.png     # Git 협업
+├─ scripts/                      # 유틸리티 스크립트
+│  ├─ fix_december_duplicates.js    # 12월 중복 데이터 수정
+│  ├─ fix_duplicate_dividends.js    # 배당 중복 데이터 수정
+│  ├─ load_dividends_from_csv.js    # CSV → MongoDB 업로드
+│  └─ load_new_dividends.js         # 새로운 배당 데이터 로드
+├─ src/                          # 소스 코드
+│  ├─ app.js                     # 서버 엔트리 포인트 + 관리자 API
+│  ├─ config/                    # 설정 파일
+│  │  └─ db.js                   # MongoDB 연결 설정
+│  ├─ models/                    # 데이터베이스 모델
+│  │  ├─ Portfolio.js            # 포트폴리오 모델
+│  │  ├─ Post.js                 # 게시글 모델 (작성자 정보 포함)
+│  │  ├─ Stock.js                # 주식 데이터 모델
+│  │  └─ User.js                 # 사용자 모델 (로그인/회원가입)
+│  ├─ services/                  # 비즈니스 로직 서비스
+│  │  ├─ optimizer.js            # 월별 균등 배당 포트폴리오 최적화
+│  │  ├─ priceUpdateService.js   # 주식 가격 자동 업데이트 (봇탐지 회피)
+│  │  └─ pricing.js              # 가격 및 배당수익률 계산 유틸리티
+│  ├─ routes/                    # API 라우트
+│  │  ├─ index.js                # 홈/메인 메뉴 라우트
+│  │  ├─ auth.js                 # 인증 라우트 (로그인/회원가입)
+│  │  ├─ board.js                # 게시판 라우트
+│  │  ├─ stocks.js               # 주식 데이터 조회 API
+│  │  ├─ portfolio.js            # 포트폴리오 생성 API
+│  │  ├─ charts.js               # 차트 iframe 라우트
+│  │  ├─ chat.js                 # OpenAI 챗봇 API
+│  │  └─ chatbot.js              # 챗봇 데이터 API
+│  ├─ controllers/               # 컨트롤러 (비즈니스 로직)
+│  │  ├─ authController.js       # 인증 컨트롤러
+│  │  ├─ boardController.js      # 게시판 컨트롤러 (로그인 체크 + 권한 관리)
+│  │  ├─ portfolioController.js  # 포트폴리오 컨트롤러
+│  │  └─ stockController.js      # 주식 데이터 컨트롤러
+│  ├─ views/                     # EJS 템플릿 뷰
+│  │  ├─ inc/                    # 공통 컴포넌트
+│  │  │  ├─ top.ejs             # 공통 헤더 (동적 로그인 상태)
+│  │  │  ├─ bottom.ejs          # 공통 푸터 (FAQ, 약관 링크)
+│  │  │  └─ 404.ejs             # 404 에러 페이지
+│  │  ├─ home.ejs               # 홈페이지 (통합 네비게이션)
+│  │  ├─ select.ejs             # 배당주 선택 페이지 (UI 개선)
+│  │  ├─ login.ejs              # 로그인 페이지
+│  │  ├─ register.ejs           # 회원가입 페이지
+│  │  ├─ board.ejs              # 게시판 목록 (로그인 체크)
+│  │  ├─ board_detail.ejs       # 게시글 상세 보기
+│  │  ├─ board_edit.ejs         # 게시글 수정 페이지
+│  │  ├─ board_delete.ejs       # 게시글 삭제 확인 페이지
+│  │  ├─ chatbot.ejs            # 챗봇 페이지
+│  │  ├─ chart_frame.ejs        # 차트 전용 iframe
+│  │  ├─ portfolio.ejs          # 포트폴리오 페이지
+│  │  └─ price-admin.ejs        # 관리자 모드 (3개 탭)
+│  └─ public/                    # 정적 리소스
+│     ├─ css/                    # 스타일시트
+│     │  ├─ main.css            # 메인 스타일
+│     │  └─ style.css           # 추가 스타일
+│     ├─ js/                     # 클라이언트 사이드 JavaScript
+│     │  ├─ main.js             # 메인 JavaScript
+│     │  ├─ chatbot.js          # 챗봇 인터페이스 (가독성 개선)
+│     │  ├─ login.js            # 로그인 JavaScript
+│     │  └─ register.js         # 회원가입 JavaScript
+│     └─ img/                    # 이미지 리소스
+│        └─ bdjLogo.png         # BDJ Finance 로고
+└─ node_modules/                 # Node.js 의존성 패키지 (Git 제외)
 ```
 
 ---
