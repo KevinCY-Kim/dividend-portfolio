@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= typeof title !== 'undefined' ? title : "BDJ Finance" %></title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* ===== Design Tokens ===== */
+    :root{
+        --bg: #f5f7fb;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #2563eb;
+        --primary-600:#1e40af;
+        --ring: rgba(37,99,235,0.25);
+        --radius: 14px;
+        --shadow: 0 10px 30px rgba(0,0,0,.06);
+        --container: 1080px;
+    }
+    /* ===== Reset (minimum) ===== */
+    *{box-sizing:border-box}
+    body{
+        margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR', Arial, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        color:var(--text); background:var(--bg);
+    }
+    img{max-width:100%; height:auto; display:block}
+    a{text-decoration:none; color:inherit}
+
+        /* ===== Layout ===== */
+    .container{width:min(100%, var(--container)); margin:0 auto; padding:0 24px}
+    
+    /* 페이지 전체를 flexbox로 설정하여 footer를 하단에 고정 */
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    
+    main.container {
+        flex: 1;
+        margin-bottom: auto;
+    }
+    
+    /* ===== Components ===== */
+    .navbar{padding:1rem 0; background-color:var(--card); box-shadow:var(--shadow)}
+    .navbar .nav-container{display:flex; justify-content:space-between; align-items:center}
+    .navbar .nav-logo{font-size:1.5rem; font-weight:700; display: flex; align-items: center;}
+    .navbar .nav-links{display:flex; gap:1.5rem}
+    .navbar .nav-links a{font-weight:500; padding:1rem 1.5rem; font-size: 1.3rem; min-width: 100px; text-align: center; white-space: nowrap;}
+
+    .footer{padding:24px 0; background-color:var(--text); color:#fff; text-align:center; margin-top: auto;}
+    .footer .container{display:flex; justify-content:space-between; align-items:center; flex-direction:column; gap:16px;}
+    .footer a{color:rgba(255,255,255,.7); transition:color .2s ease}
+    .footer a:hover{color:#fff}
+
+    .menu-toggle{display:none; cursor:pointer;}
+    
+    @media (max-width: 768px) {
+        .navbar .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 64px; left: 0; background: var(--card); box-shadow: var(--shadow); padding: 16px; border-radius: var(--radius); }
+        .menu-toggle { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 네비게이션바 -->
+  <header class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo row">
+            <img src="/img/bdjLogo.png" alt="BDJ Finance Logo" style="width: 15%; height: auto;">
+            <div style="margin-left: 15px;">
+                <a style="font-size: 30px;" href="/"> BDJ Finance </a><br>
+                    <small class="text-xs text-gray-500">BaeDangJuniors</small>
+            </div>
+        </div>
+        <div class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('hidden')">
+        </div>
+        <nav class="nav-links">
+            <a id="home" href="/"><strong>Home</strong></a>
+            <a id="select" href="/select"><strong>Select</strong></a>
+            <a id="chatbot" href="/chatbot"><strong>Chatbot</strong></a>
+            <a id="dashboard" href="/board"><strong>Board</strong></a>
+            <a id="login" href="/auth/login"><strong>Login</strong></a>
+            <a id="register" href="/auth/register"><strong>Register</strong></a>
+        </nav>
+    </div>
+  </header>
+
+  <!-- 로그인 상태에 따른 메뉴 변경 스크립트 -->
+  <script>
+    // 페이지 로드 시 로그인 상태 확인
+    document.addEventListener('DOMContentLoaded', function() {
+      checkLoginStatus();
+    });
+
+    // 로그인 상태 확인 함수
+    async function checkLoginStatus() {
+      try {
+        const response = await fetch('/api/check-auth', {
+          method: 'GET',
+          credentials: 'include'
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          if (data.isLoggedIn) {
+            // 로그인된 경우
+            updateMenuForLoggedInUser();
+          } else {
+            // 로그아웃된 경우
+            updateMenuForLoggedOutUser();
+          }
+        } else {
+          // API 호출 실패 시 로그아웃 상태로 처리
+          updateMenuForLoggedOutUser();
+        }
+      } catch (error) {
+        console.error('로그인 상태 확인 오류:', error);
+        // 오류 발생 시 로그아웃 상태로 처리
+        updateMenuForLoggedOutUser();
+      }
+    }
+
+    // 로그인된 사용자를 위한 메뉴 업데이트
+    function updateMenuForLoggedInUser() {
+      const loginLink = document.getElementById('login');
+      const registerLink = document.getElementById('register');
+      
+      if (loginLink) {
+        loginLink.innerHTML = '<strong>LogOut</strong>';
+        loginLink.href = '#';
+        loginLink.onclick = function(e) {
+          e.preventDefault();
+          logout();
+        };
+      }
+      
+      if (registerLink) {
+        registerLink.style.display = 'none';
+      }
+    }
+
+    // 로그아웃된 사용자를 위한 메뉴 업데이트
+    function updateMenuForLoggedOutUser() {
+      const loginLink = document.getElementById('login');
+      const registerLink = document.getElementById('register');
+      
+      if (loginLink) {
+        loginLink.innerHTML = '<strong>Login</strong>';
+        loginLink.href = '/auth/login';
+        loginLink.onclick = null;
+      }
+      
+      if (registerLink) {
+        registerLink.style.display = 'inline-block';
+      }
+    }
+
+    // 로그아웃 함수
+    async function logout() {
+      try {
+        const response = await fetch('/auth/logout', {
+          method: 'GET',
+          credentials: 'include'
+        });
+        
+        if (response.ok) {
+          // 로그아웃 성공 시 메뉴 업데이트
+          updateMenuForLoggedOutUser();
+          // 홈 페이지로 리다이렉트
+          window.location.href = '/';
+        } else {
+          console.error('로그아웃 실패');
+        }
+      } catch (error) {
+        console.error('로그아웃 오류:', error);
+      }
+    }
+  </script>
+    </div>
+  </header>
+
+  <!-- 메인 컨텐츠 -->
+  <main class="container">

@@ -1,0 +1,102 @@
+<%- include('inc/top', {title:'로그인'}) %>
+
+<style>
+  .form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .form-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: var(--text);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .form-table-box {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 40px;
+    margin: 0 auto;
+  }
+  
+  .form-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  
+  .form-table th {
+    text-align: left;
+    padding: 16px 12px;
+    font-weight: 600;
+    color: var(--text);
+    width: 120px;
+  }
+  
+  .form-table td {
+    padding: 16px 12px;
+  }
+  
+  .form-table input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+  }
+  
+  .form-table input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+  
+  .btn-primary {
+    background: #f78308;
+    color: rgb(249, 248, 245);
+    padding: 14px 28px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    margin-top: 16px;
+  }
+  
+  .btn-primary:hover {
+    background: #e67600;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(247, 131, 8, 0.3);
+  }
+</style>
+
+<div class="form-container">
+  <h2 class="form-title">로그인</h2>
+  <form method="post" action="/auth/login" class="form-table-box">
+    <table class="form-table">
+      <tr>
+        <th><label for="email">이 메 일</label></th>
+        <td><input id="email" name="email" type="email" placeholder="Email" required /></td>
+      </tr>
+      <tr>
+        <th><label for="password">비밀번호</label></th>
+        <td><input id="password" name="password" type="password" placeholder="Password" required /></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="form-submit">
+          <button type="submit" class="btn-primary">Login</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+<%- include('inc/bottom') %>

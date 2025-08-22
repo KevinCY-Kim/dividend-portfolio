@@ -1,0 +1,78 @@
+<%- include('inc/top', {title:'BDJ Finance - Chatbot'}) %>
+
+<style>
+    /* chatbot 페이지 전용 배경 스타일 */
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        min-height: 100vh;
+    }
+    
+    .chatbot-header {
+        text-align: center;
+        margin: 30px 0;
+        color: white;
+    }
+    
+    .chatbot-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .chatbot-header p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+    }
+    
+    .chatbot-container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        overflow: hidden;
+        margin: 0 auto;
+        max-width: 1000px;
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .chatbot-frame {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 20px;
+        flex: 1;
+    }
+    
+    .back-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 24px;
+        background: rgba(255,255,255,0.2);
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+    
+    .back-button:hover {
+        background: rgba(255,255,255,0.3);
+        transform: translateY(-2px);
+    }
+</style>
+
+<div class="chatbot-header">
+    <h1>🤖 BDJ Finance Chatbot</h1>
+    <p>금융 상담과 투자 정보를 AI와 함께 알아보세요</p>
+</div>
+
+<div class="chatbot-container">
+    <div id="chat-widget" class="chatbot-frame"></div>
+</div>
+
+<div style="text-align: center;">
+    <a href="/" class="back-button">← 홈으로 돌아가기</a>
+</div>
+
+<%- include('inc/bottom') %>

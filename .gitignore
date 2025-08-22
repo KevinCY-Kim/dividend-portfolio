@@ -1,0 +1,37 @@
+# 환경변수
+.env
+.env.local
+.env.*.local
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 로그 파일
+logs
+*.log
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# 운영 중 생성되는 파일
+coverage/
+dist/
+build/
+tmp/
+*.tmp
+*.swp
+*.swo
+
+# OS별 불필요 파일
+.DS_Store
+Thumbs.db
+
+# IDE/에디터
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace

@@ -1,0 +1,744 @@
+<%- include('inc/top', {title:'배당주 선택'}) %>
+
+<style>
+  .sortable {
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .sortable:hover {
+    background-color: #ffffff !important;
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .badge {
+    font-size: 0.8em;
+  }
+  
+  /* 테이블 가독성 개선 */
+  .table {
+    font-size: 14px;
+    line-height: 1.4;
+    background-color: white;
+  }
+  
+  .table th {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 16px 12px;
+    vertical-align: middle;
+    border-bottom: 2px solid #dee2e6;
+    color: #000000;
+  }
+  
+  .table td {
+    padding: 14px 12px;
+    vertical-align: middle;
+    border-bottom: 1px solid #e9ecef;
+    color: #000000;
+    background-color: white;
+  }
+  
+  .table tbody tr {
+    transition: none;
+    background-color: white;
+  }
+  
+  .table tbody tr:hover {
+    background-color: white !important;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  /* 호버 효과 제거 */
+  .table tbody tr:hover td:nth-child(1),
+  .table tbody tr:hover td:nth-child(2),
+  .table tbody tr:hover td:nth-child(3),
+  .table tbody tr:hover td:nth-child(4),
+  .table tbody tr:hover td:nth-child(5),
+  .table tbody tr:hover td:nth-child(6) {
+    color: #000000 !important;
+  }
+  
+  /* 호버 시 인덱스 배지 효과 제거 */
+  .table tbody tr:hover .badge {
+    color: #000000 !important;
+    background-color: white !important;
+    border-color: #dee2e6 !important;
+  }
+  
+  /* 컬럼별 너비 조정 */
+  .table th:nth-child(1), .table td:nth-child(1) { /* 티커 */
+    width: 80px;
+    font-weight: 600;
+    color: #000000;
+  }
+  
+  .table th:nth-child(2), .table td:nth-child(2) { /* 종목명 */
+    width: 200px;
+    font-weight: 500;
+    color: #000000;
+  }
+  
+  .table th:nth-child(3), .table td:nth-child(3) { /* 인덱스 */
+    width: 120px;
+    text-align: center;
+    color: #000000;
+  }
+  
+  .table th:nth-child(4), .table td:nth-child(4) { /* 현재가 */
+    width: 100px;
+    text-align: right;
+    font-weight: 600;
+    color: #000000;
+  }
+  
+  .table th:nth-child(5), .table td:nth-child(5) { /* 연간 배당금 */
+    width: 120px;
+    text-align: right;
+    font-weight: 600;
+    color: #000000;
+  }
+  
+  .table th:nth-child(6), .table td:nth-child(6) { /* 배당 수익률 */
+    width: 120px;
+    text-align: right;
+    font-weight: 600;
+    color: #000000;
+  }
+  
+  .table th:nth-child(7), .table td:nth-child(7) { /* 배당월 */
+    width: 150px;
+    text-align: center;
+    color: #000000;
+  }
+  
+  /* 인덱스 배지 스타일 제거 */
+  .badge {
+    display: none;
+  }
+  
+  .badge.bg-primary {
+    display: none;
+  }
+  
+  /* 테이블 컨테이너 개선 */
+  .table-responsive {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    background: white;
+  }
+  
+  /* 테이블 헤더 개선 */
+  .table-dark {
+    background: white;
+    border: none;
+  }
+  
+  .table-dark th {
+    border: none;
+    color: #000000;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  /* 테이블 내용 배경 */
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: white;
+  }
+  
+  .table-striped tbody tr:nth-of-type(even) {
+    background-color: white;
+  }
+  
+  /* 정렬 화살표 스타일 */
+  .sort-arrow {
+    font-size: 12px;
+    margin-left: 5px;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+  }
+  
+  .sortable:hover .sort-arrow {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  
+  /* 정렬 방향에 따른 화살표 변경 */
+  .sortable[data-order="asc"] .sort-arrow::after {
+    content: "↑";
+    color: #28a745;
+  }
+  
+  .sortable[data-order="desc"] .sort-arrow::after {
+    content: "↓";
+    color: #dc3545;
+  }
+  
+  /* 테이블 제목 스타일 */
+  .table-title {
+    color: #495057;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #007bff;
+    display: inline-block;
+  }
+  
+  /* 인덱스 버튼 스타일 */
+  .index-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: nowrap;
+    min-height: 50px;
+    align-items: center;
+  }
+  
+  .index-btn {
+    min-width: 140px;
+    height: 45px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  
+  .index-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .index-btn.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+  }
+  
+  /* 테이블 셀 고정 높이 */
+  .table td {
+    height: 80px;
+    vertical-align: middle;
+  }
+  
+  /* 배당주 선택 테이블 고정 */
+  .table-responsive {
+    min-width: 800px;
+  }
+  
+  .table {
+    table-layout: fixed;
+    width: 100%;
+  }
+  
+  .table th,
+  .table td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* 두 번째 컬럼 텍스트 굵게 */
+  .table tbody tr td:nth-child(2) {
+    font-weight: 600;
+  }
+  
+  /* 종목 정보 테이블 높이 조정 */
+  #stock-info .table td {
+    height: 40px; /* 기존 80px의 50% */
+    padding: 8px 12px; /* 기존 16px 12px의 50% */
+  }
+  
+  #stock-info .table th {
+    padding: 8px 12px; /* 기존 16px 12px의 50% */
+  }
+</style>
+
+<div class="container mt-4">
+  <!-- 배당주 선택 섹션 -->
+  <div class="mb-4">
+    <h4 class="table-title">배당주 선택</h4>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th style="width: 50%; min-width: 400px;"><strong>인덱스 선택</strong></th>
+            <th style="width: 50%; min-width: 400px;"><strong>종목 선택</strong></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align: center;">
+              <div class="index-buttons">
+                <button type="button" class="btn btn-outline-primary index-btn" data-index="NASDAQ-100">NASDAQ-100</button>
+                <button type="button" class="btn btn-outline-primary index-btn" data-index="S&P 500">S&P 500</button>
+                <button type="button" class="btn btn-outline-primary index-btn" data-index="US ETF">US ETF</button>
+              </div>
+            </td>
+            <td>
+              <select id="ticker-select" class="form-select" disabled>
+                <option value="">먼저 인덱스를 선택하세요</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 종목 정보 섹션 -->
+  <div id="stock-info" class="mb-4" style="display: none;">
+    <br>
+    <h4 class="table-title">종목 정보</h4>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th style="width: 150px; text-align: left;"><strong>구분</strong></th>
+            <th style="width: 350px; text-align: left;"><strong>내용</strong></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>티커</strong></td>
+            <td id="stock-ticker"></td>
+          </tr>
+          <tr>
+            <td><strong>종목명</strong></td>
+            <td id="stock-name"></td>
+          </tr>
+          <tr>
+            <td><strong>인덱스</strong></td>
+            <td id="stock-index"></td>
+          </tr>
+          <tr>
+            <td><strong>현재가</strong></td>
+            <td id="stock-price"></td>
+          </tr>
+          <tr>
+            <td><strong>연간배당금</strong></td>
+            <td id="annual-dividend"></td>
+          </tr>
+          <tr>
+            <td><strong>배당수익률</strong></td>
+            <td id="stock-yield">계산 중...</td>
+          </tr>
+          <tr>
+            <td><strong>배당월</strong></td>
+            <td id="dividend-months"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 월별 배당 차트 섹션 -->
+  <div class="mb-4">
+    <br>
+    <h4 class="table-title">월별 배당 차트</h4>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th style="width: 100%;"><strong>차트</strong></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align: center; padding: 20px;">
+              <div id="chart-container">
+                <canvas id="dividend-chart" width="400" height="200"></canvas>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 종목 리스트 테이블 -->
+  <div class="mt-4">
+    <br>
+    <h4 class="table-title">종목 리스트</h4>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col" class="sortable" data-sort="ticker" data-order="asc" onclick="sortTable('ticker')" style="width: 12%; text-align: center;">
+              <strong>티커</strong> <span class="sort-arrow"></span>
+            </th>
+            <th scope="col" class="sortable" data-sort="name" data-order="asc" onclick="sortTable('name')" style="width: 25%; text-align: center;">
+              <strong>종목명</strong> <span class="sort-arrow"></span>
+            </th>
+            <th scope="col" class="sortable" data-sort="index" data-order="asc" onclick="sortTable('index')" style="width: 10.5%; text-align: center;">
+              <strong>인덱스</strong> <span class="sort-arrow"></span>
+            </th>
+            <th scope="col" class="sortable" data-sort="price" data-order="asc" onclick="sortTable('price')" style="width: 8.4%; text-align: center;">
+              <strong>현재가</strong> <span class="sort-arrow"></span>
+            </th>
+            <th scope="col" class="sortable" data-sort="dividend" data-order="asc" onclick="sortTable('dividend')" style="width: 10.5%; text-align: center;">
+              <strong>연간배당금</strong> <span class="sort-arrow"></span>
+            </th>
+            <th scope="col" class="sortable" data-sort="yield" data-order="asc" onclick="sortTable('yield')" style="width: 8.4%; text-align: center;">
+              <strong>배당수익률</strong> <span class="sort-arrow"></span>
+            </th>
+            <th scope="col" style="width: 18%; text-align: center;"><strong>배당월</strong></th>
+          </tr>
+        </thead>
+        <tbody id="stocks-table-body">
+          <!-- 종목 데이터가 여기에 동적으로 추가됩니다 -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let dividendChart;
+let stocksData = [];
+let filteredStocks = [];
+
+// 페이지 로드 시 종목 데이터 가져오기
+document.addEventListener('DOMContentLoaded', async function() {
+  try {
+    const response = await fetch('/stocks');
+    stocksData = await response.json();
+    filteredStocks = [...stocksData];
+    
+    // 인덱스별 통계 표시
+    displayIndexStats();
+    updateStocksTable(); // 테이블 초기 로딩 시 업데이트
+  } catch (error) {
+    console.error('종목 데이터를 가져오는데 실패했습니다:', error);
+  }
+});
+
+// 인덱스별 통계 표시
+function displayIndexStats() {
+  const stats = {};
+  stocksData.forEach(stock => {
+    if (!stats[stock.index]) {
+      stats[stock.index] = { count: 0, totalDividends: 0 };
+    }
+    stats[stock.index].count++;
+    stats[stock.index].totalDividends += stock.dividends2024.reduce((sum, d) => sum + d.amount, 0);
+  });
+  
+  console.log('인덱스별 통계:', stats);
+}
+
+// 인덱스 선택 버튼 이벤트
+document.addEventListener('DOMContentLoaded', function() {
+  // 기본적으로 NASDAQ-100 선택
+  const defaultButton = document.querySelector('[data-index="NASDAQ-100"]');
+  if (defaultButton) {
+    defaultButton.classList.remove('btn-outline-primary');
+    defaultButton.classList.add('btn-primary');
+    
+    // 기본 인덱스로 종목 필터링
+    const selectedIndex = 'NASDAQ-100';
+    filteredStocks = stocksData.filter(stock => stock.index === selectedIndex);
+    
+    // 종목 선택 옵션 채우기
+    const tickerSelect = document.getElementById('ticker-select');
+    tickerSelect.disabled = false;
+    tickerSelect.innerHTML = `<option value="">${selectedIndex}에서 종목을 선택하세요</option>`;
+    filteredStocks.forEach(stock => {
+      const option = document.createElement('option');
+      option.value = stock.ticker;
+      option.textContent = `${stock.ticker} - ${stock.name}`;
+      tickerSelect.appendChild(option);
+    });
+    
+    updateStocksTable();
+  }
+  
+  // 모든 인덱스 버튼에 클릭 이벤트 추가
+  document.querySelectorAll('[data-index]').forEach(button => {
+    button.addEventListener('click', function() {
+      const selectedIndex = this.getAttribute('data-index');
+      const tickerSelect = document.getElementById('ticker-select');
+      const stockInfo = document.getElementById('stock-info');
+      
+      // 모든 버튼의 활성 상태 제거
+      document.querySelectorAll('[data-index]').forEach(btn => {
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-outline-primary');
+      });
+      
+      // 클릭된 버튼 활성화
+      this.classList.remove('btn-outline-primary');
+      this.classList.add('btn-primary');
+      
+      // 종목 선택 초기화
+      tickerSelect.innerHTML = '<option value="">종목을 선택하세요</option>';
+      tickerSelect.disabled = false;
+      stockInfo.style.display = 'none';
+      
+      if (dividendChart) {
+        dividendChart.destroy();
+      }
+      
+      // 인덱스에 따라 종목 필터링
+      filteredStocks = stocksData.filter(stock => stock.index === selectedIndex);
+      
+      // 종목 선택 옵션 채우기
+      tickerSelect.innerHTML = `<option value="">${selectedIndex}에서 종목을 선택하세요</option>`;
+      filteredStocks.forEach(stock => {
+        const option = document.createElement('option');
+        option.value = stock.ticker;
+        option.textContent = `${stock.ticker} - ${stock.name}`;
+        tickerSelect.appendChild(option);
+      });
+      
+      updateStocksTable(); // 인덱스 변경 시 테이블 업데이트
+    });
+  });
+});
+
+// 종목 선택 시 이벤트
+document.getElementById('ticker-select').addEventListener('change', function() {
+  const selectedTicker = this.value;
+  const stockInfo = document.getElementById('stock-info');
+  
+  if (selectedTicker) {
+    showStockInfo(selectedTicker);
+    updateDividendChart(selectedTicker);
+  } else {
+    stockInfo.style.display = 'none';
+    if (dividendChart) {
+      dividendChart.destroy();
+    }
+  }
+});
+
+// 종목 정보 표시
+function showStockInfo(ticker) {
+  const stock = filteredStocks.find(s => s.ticker === ticker);
+  if (!stock) return;
+  
+  console.log('Stock data:', stock); // 디버깅용 로그
+  
+  document.getElementById('stock-name').textContent = stock.name;
+  document.getElementById('stock-ticker').textContent = stock.ticker;
+  document.getElementById('stock-index').textContent = stock.index;
+  document.getElementById('stock-price').textContent = `$${stock.price}`;
+  
+  // 연간 배당금 계산
+  const annualDividend = calculateAnnualDividend(stock);
+  console.log('Annual dividend:', annualDividend); // 디버깅용 로그
+  document.getElementById('annual-dividend').textContent = `$${annualDividend.toFixed(2)}`;
+  
+  // 배당수익률 계산 (안전한 계산)
+  let dividendYield = 0;
+  if (stock.price && stock.price > 0 && annualDividend > 0) {
+    dividendYield = ((annualDividend / stock.price) * 100).toFixed(2);
+  }
+  console.log('Dividend yield:', dividendYield); // 디버깅용 로그
+  document.getElementById('stock-yield').textContent = `${dividendYield}%`;
+  
+  // 배당월 정보 가져오기
+  const dividendMonths = getDividendMonths(stock);
+  document.getElementById('dividend-months').textContent = dividendMonths.join(', ');
+  
+  document.getElementById('stock-info').style.display = 'block';
+}
+
+// 종목 리스트 테이블 업데이트
+function updateStocksTable() {
+  const tbody = document.getElementById('stocks-table-body');
+  tbody.innerHTML = '';
+  
+  filteredStocks.forEach(stock => {
+    const annualDividend = calculateAnnualDividend(stock);
+    const dividendYield = ((annualDividend / stock.price) * 100).toFixed(2);
+    const dividendMonths = getDividendMonths(stock);
+    
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td style="text-align: center;"><strong>${stock.ticker}</strong></td>
+      <td style="text-align: left;"><strong>${stock.name}</strong></td>
+      <td style="text-align: center;"><strong>${stock.index}</strong></td>
+      <td style="text-align: right;">$${stock.price}</td>
+      <td style="text-align: right;">$${annualDividend.toFixed(2)}</td>
+      <td style="text-align: right;">${dividendYield}%</td>
+      <td style="text-align: center;">${dividendMonths.join(', ')}</td>
+    `;
+    
+    // 행 클릭 시 종목 정보 표시
+    row.style.cursor = 'pointer';
+    row.addEventListener('click', () => {
+      document.getElementById('ticker-select').value = stock.ticker;
+      showStockInfo(stock.ticker);
+      updateDividendChart(stock.ticker);
+    });
+    
+    tbody.appendChild(row);
+  });
+}
+
+// 테이블 정렬 기능
+function sortTable(column) {
+  const sortOrder = document.querySelector(`[data-sort="${column}"]`).getAttribute('data-order') === 'asc' ? -1 : 1;
+  
+  // 모든 헤더의 정렬 순서 초기화
+  document.querySelectorAll('[data-sort]').forEach(th => th.setAttribute('data-order', 'asc'));
+  
+  // 현재 헤더의 정렬 순서 설정
+  document.querySelector(`[data-sort="${column}"]`).setAttribute('data-order', sortOrder === 1 ? 'asc' : 'desc');
+  
+  // 데이터 정렬
+  filteredStocks.sort((a, b) => {
+    let aVal, bVal;
+    
+    switch(column) {
+      case 'ticker':
+        aVal = a.ticker;
+        bVal = b.ticker;
+        break;
+      case 'name':
+        aVal = a.name;
+        bVal = b.name;
+        break;
+      case 'index':
+        aVal = a.index;
+        bVal = b.index;
+        break;
+      case 'price':
+        aVal = parseFloat(a.price);
+        bVal = parseFloat(b.price);
+        break;
+      case 'dividend':
+        aVal = calculateAnnualDividend(a);
+        bVal = calculateAnnualDividend(b);
+        break;
+      case 'yield':
+        aVal = (calculateAnnualDividend(a) / a.price) * 100;
+        bVal = (calculateAnnualDividend(b) / b.price) * 100;
+        break;
+      default:
+        return 0;
+    }
+    
+    if (aVal < bVal) return -1 * sortOrder;
+    if (aVal > bVal) return 1 * sortOrder;
+    return 0;
+  });
+  
+  updateStocksTable();
+  updateDividendChart(filteredStocks[0]);
+}
+
+// 배당월 정보 가져오기
+function getDividendMonths(stock) {
+  if (!stock.dividends2024 || stock.dividends2024.length === 0) {
+    return ['배당 없음'];
+  }
+  
+  const monthNames = [
+    '1', '2', '3', '4', '5', '6',
+    '7', '8', '9', '10', '11', '12'
+  ];
+  
+  return stock.dividends2024
+    .map(d => monthNames[d.month - 1])
+    .sort((a, b) => monthNames.indexOf(a) - monthNames.indexOf(b));
+}
+
+// 연간 배당금 계산
+function calculateAnnualDividend(stock) {
+  console.log('Calculating annual dividend for stock:', stock); // 디버깅용 로그
+  
+  if (!stock || !stock.dividends2024 || stock.dividends2024.length === 0) {
+    console.log('No dividends data available'); // 디버깅용 로그
+    return 0;
+  }
+  
+  const totalDividend = stock.dividends2024.reduce((sum, d) => {
+    if (d && d.amount && !isNaN(d.amount)) {
+      return sum + parseFloat(d.amount);
+    }
+    return sum;
+  }, 0);
+  
+  console.log('Total dividend calculated:', totalDividend); // 디버깅용 로그
+  return totalDividend;
+}
+
+// 배당 차트 업데이트
+function updateDividendChart(ticker) {
+  if (dividendChart) {
+    dividendChart.destroy();
+  }
+  
+  const ctx = document.getElementById('dividend-chart').getContext('2d');
+  
+  // 월별 배당 데이터 준비
+  const monthlyData = new Array(12).fill(0);
+  const monthLabels = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+  
+  const stock = filteredStocks.find(s => s.ticker === ticker);
+  if (stock && stock.dividends2024) {
+    stock.dividends2024.forEach(dividend => {
+      monthlyData[dividend.month - 1] = dividend.amount;
+    });
+  }
+  
+  dividendChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: monthLabels,
+      datasets: [{
+        label: '배당금 ($)',
+        data: monthlyData,
+        backgroundColor: monthlyData.map(value => value > 0 ? 'rgba(54, 162, 235, 0.8)' : 'rgba(200, 200, 200, 0.3)'),
+        borderColor: monthlyData.map(value => value > 0 ? 'rgba(54, 162, 235, 1)' : 'rgba(200, 200, 200, 0.5)'),
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: {
+          display: true,
+          text: `${ticker} 월별 배당 차트`
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const value = context.parsed.y;
+              return value > 0 ? `배당금: $${value.toFixed(2)}` : '배당 없음';
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: '배당금 ($)'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: ''
+          }
+        }
+      }
+    }
+  });
+}
+
+// 포트폴리오 추가 기능 제거됨
+</script>
+
+<%- include('inc/bottom') %>

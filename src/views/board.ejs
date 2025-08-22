@@ -1,0 +1,248 @@
+<%- include('inc/top', {title:'게시판'}) %>
+
+<style>
+  .board-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .board-form-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 32px;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  
+  .board-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text);
+  }
+  
+  .form-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  
+  .form-table th {
+    text-align: left;
+    padding: 12px;
+    font-weight: 600;
+    color: var(--text);
+    width: 100px;
+  }
+  
+  .form-table td {
+    padding: 12px;
+  }
+  
+  .form-table input,
+  .form-table textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+  }
+  
+  .form-table input:focus,
+  .form-table textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+  
+  .form-table textarea {
+    height: 120px;
+    resize: vertical;
+  }
+  
+  .btn-primary {
+    background: #f78308;
+    color: rgb(249, 248, 245);
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .btn-primary:hover {
+    background: #e67600;
+  }
+  
+  .board-list-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 32px;
+    text-align: center;
+  }
+  
+  .board-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  
+  .board-table th {
+    background: #f8fafc;
+    padding: 16px 12px;
+    font-weight: 600;
+    color: var(--text);
+    border-bottom: 2px solid #e2e8f0;
+  }
+  
+  .board-table td {
+    padding: 16px 12px;
+    border-bottom: 1px solid #e9ecef;
+  }
+  
+  .board-table a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .board-table a:hover {
+    text-decoration: underline;
+  }
+  
+  .btn-edit, .btn-delete {
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin: 0 4px;
+  }
+  
+  .btn-edit {
+    background: #f78308 !important;
+    color: white !important;
+  }
+  
+  .btn-delete {
+    background: #f78308 !important;
+    color: white !important;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-edit:hover, .btn-delete:hover {
+    background: #e67600 !important;
+  }
+  
+  .pagination {
+    margin-top: 24px;
+    text-align: center;
+  }
+  
+  .pagination a {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 4px;
+    background: #f1f5f9;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .pagination a:hover,
+  .pagination a.active {
+    background: var(--primary);
+    color: white;
+  }
+</style>
+
+<div class="board-wrapper">
+  <!-- 글 작성 영역 -->
+  <% if (isLoggedIn) { %>
+    <div class="board-form-container">
+      <h2 class="board-title">게시판</h2>
+      <form method="post" action="/board" class="board-form">
+        <table class="form-table">
+          <tr>
+            <th><label for="title">제목</label></th>
+            <td><input id="title" name="title" placeholder="제목" required /></td>
+          </tr>
+          <tr>
+            <th><label for="body">내용</label></th>
+            <td><textarea id="body" name="body" placeholder="내용" required></textarea></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="form-submit">
+              <button type="submit" class="btn-primary">등록</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>ㄴ
+  <% } else { %>
+    <div class="board-form-container">
+      <h2 class="board-title">게시판</h2>
+      <p style="color: #666; font-size: 1.1rem;">글을 작성하려면 <a href="/auth/login" style="color: var(--primary);">로그인</a>이 필요합니다.</p>
+    </div>
+  <% } %>
+
+  <hr />
+
+  <!-- 글 목록 영역 -->
+  <div class="board-list-container">
+    <table class="board-table">
+      <thead>
+        <tr>
+          <th style="width:50px;">번호</th>
+          <th style="width:250px;">제목</th>
+          <th style="width:100px;">작성자</th>
+          <th style="width:120px;">작성일</th>
+          <th style="width:150px;">관리</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% 
+          const totalPosts = posts.length;
+          (posts || []).forEach((p, idx) => { 
+             const now = new Date();
+             const postDate = new Date(p.createdAt);
+             const isToday = postDate.toDateString() === now.toDateString();
+             const displayDate = isToday
+               ? postDate.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })
+               : postDate.toLocaleDateString('ko-KR', { month: '2-digit', day: '2-digit' });
+        %>
+          <tr>
+            <td><%= totalPosts - ((page - 1) * limit + idx) %></td>
+            <td><a href="/board/<%= p._id %>"><%= p.title %></a></td>
+            <td><%= p.author || '알 수 없음' %></td>
+            <td><%= displayDate %></td>
+            <td>
+              <% if (isLoggedIn && p.authorId && p.authorId.toString() === currentUserId) { %>
+                <a href="/board/<%= p._id %>/edit" class="btn-edit">수정</a>
+                <form method="post" action="/board/<%= p._id %>?_method=DELETE" style="display:inline;">
+                  <button type="submit" class="btn-delete">삭제</button>
+                </form>
+              <% } else { %>
+                <span style="color: #999; font-size: 0.9rem;">-</span>
+              <% } %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <!-- 페이지네이션 (변경 없음) -->
+    <div class="pagination">
+      <% for (let i = 1; i <= totalPages; i++) { %>
+        <a href="/board?page=<%= i %>" class="<%= page === i ? 'active' : '' %>"><%= i %></a>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<%- include('inc/bottom') %>

@@ -1,0 +1,96 @@
+<%- include('inc/top', {title:'게시글 내용'}) %>
+
+<style>
+  .board-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .board-detail-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 32px;
+    margin-bottom: 32px;
+  }
+  
+  .board-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  
+  .board-meta {
+    color: #666;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .board-body {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 32px;
+    color: var(--text);
+  }
+  
+  .board-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  
+  .btn-secondary, .btn-edit, .btn-delete {
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+  }
+  
+  .btn-secondary {
+    background: #6b7280;
+    color: white;
+  }
+  
+  .btn-edit {
+    background: var(--primary);
+    color: white;
+  }
+  
+  .btn-delete {
+    background: #dc2626;
+    color: white;
+  }
+  
+  .btn-secondary:hover, .btn-edit:hover, .btn-delete:hover {
+    opacity: 0.9;
+  }
+</style>
+
+<div class="board-wrapper">
+  <div class="board-detail-container">
+    <h2 class="board-title"><%= post.title %></h2>
+    <div class="board-meta">
+      <p><strong>작성자:</strong> <%= post.author || '알 수 없음' %></p>
+      <p><strong>작성일:</strong> <%= new Date(post.createdAt).toLocaleString('ko-KR') %></p>
+    </div>
+    <div class="board-body">
+      <p><%= post.body %></p>
+    </div>
+    
+    <div class="board-actions">
+      <a href="/board" class="btn-secondary">목록으로</a>
+      <% if (isLoggedIn && post.authorId && post.authorId.toString() === currentUserId) { %>
+        <a href="/board/<%= post._id %>/edit" class="btn-edit">수정</a>
+        <a href="/board/<%= post._id %>/delete" class="btn-delete">삭제</a>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<%- include('inc/bottom') %>

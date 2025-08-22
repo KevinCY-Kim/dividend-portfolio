@@ -1,0 +1,484 @@
+<%- include('inc/top', {title:'관리자 모드'}) %>
+
+<div class="container mt-4">
+  <h2 class="mb-5" style="color: #2c3e50; font-weight: 800; text-align: center; font-size: 2.5rem;">관리자 모드</h2>
+  
+  <!-- 관리자 탭 네비게이션 -->
+  <ul class="nav nav-tabs mb-5" id="adminTabs" role="tablist" style="border-bottom: 3px solid #dee2e6; justify-content: flex-start;">
+    <li class="nav-item me-5" role="presentation">
+      <button class="nav-link active px-4 py-3" id="price-tab" data-bs-toggle="tab" data-bs-target="#price-content" type="button" role="tab" aria-controls="price-content" aria-selected="true" style="font-size: 16px; font-weight: 600; border-radius: 8px 8px 0 0; min-width: 160px; text-align: left;">
+        주식 가격 관리
+      </button>
+    </li>
+    <li class="nav-item me-5" role="presentation">
+      <button class="nav-link px-4 py-3" id="account-tab" data-bs-toggle="tab" data-bs-target="#account-content" type="button" role="tab" aria-controls="account-content" aria-selected="false" style="font-size: 16px; font-weight: 600; border-radius: 8px 8px 0 0; min-width: 160px; text-align: left;">
+        계정 관리
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link px-4 py-3" id="board-tab" data-bs-toggle="tab" data-bs-target="#board-content" type="button" role="tab" aria-controls="board-content" aria-selected="false" style="font-size: 16px; font-weight: 600; border-radius: 8px 8px 0 0; min-width: 160px; text-align: left;">
+        게시판 관리
+      </button>
+    </li>
+  </ul>
+  
+  <!-- 탭 콘텐츠 -->
+  <div class="tab-content" id="adminTabContent">
+    <br>
+    <!-- 주식 가격 관리 탭 -->
+    <div class="tab-pane fade show active" id="price-content" role="tabpanel" aria-labelledby="price-tab" data-section="price-section">
+            <h3 class="mb-5" style="color: #2c3e50; font-weight: 700; border-bottom: 3px solid #3498db; padding-bottom: 15px;">주식 가격 관리</h3>
+    
+  <div class="row mb-5">
+    <div class="col-md-6 mb-4">
+      <div class="card h-100" style="border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 12px;">
+        <div class="card-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px 12px 0 0; border: none;">
+          <h5 class="mb-0" style="font-weight: 600;">자동 가격 업데이트 상태</h5>
+        </div>
+        <div class="card-body p-4">
+          <div id="service-status" class="mb-4">
+            <p>서비스 상태를 확인하는 중...</p>
+          </div>
+          <button id="refresh-status" class="btn btn-outline-primary btn-sm px-4 py-2" style="border-radius: 8px;">상태 새로고침</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+      <div class="card h-100" style="border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 12px;">
+        <div class="card-header" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border-radius: 12px 12px 0 0; border: none;">
+          <h5 class="mb-0" style="font-weight: 600;">수동 가격 업데이트</h5>
+        </div>
+        <div class="card-body p-4">
+          <div class="mb-4">
+            <label for="ticker-input" class="form-label fw-bold">종목 티커:</label>
+            <input type="text" id="ticker-input" class="form-control" placeholder="예: AAPL, MSFT" style="border-radius: 8px; border: 2px solid #e9ecef;">
+          </div>
+          <div class="d-flex gap-3">
+            <button id="update-single" class="btn btn-warning btn-sm px-4 py-2" style="border-radius: 8px; font-weight: 600;">개별 업데이트</button>
+            <button id="update-all" class="btn btn-danger btn-sm px-4 py-2" style="border-radius: 8px; font-weight: 600;">전체 업데이트</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card" style="border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 12px;">
+        <div class="card-header" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; border-radius: 12px 12px 0 0; border: none;">
+          <h5 class="mb-0" style="font-weight: 600;">가격 업데이트 로그</h5>
+        </div>
+        <div class="card-body p-4">
+          <div id="update-log" class="bg-light p-4 rounded" style="max-height: 300px; overflow-y: auto; border-radius: 8px; border: 1px solid #e9ecef;">
+            <p class="text-muted">업데이트 로그가 여기에 표시됩니다...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <!-- 계정 관리 탭 -->
+    <div class="tab-pane fade" id="account-content" role="tabpanel" aria-labelledby="account-tab" data-section="account-section">
+      <h3 class="mb-5" style="color: #2c3e50; font-weight: 700; border-bottom: 3px solid #e74c3c; padding-bottom: 15px;">계정 관리</h3>
+      
+      <div class="row mb-5">
+        <div class="col-md-6 mb-4">
+          <div class="card h-100" style="border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 12px;">
+            <div class="card-header" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; border-radius: 12px 12px 0 0; border: none;">
+              <h5 class="mb-0" style="font-weight: 600;">계정 추가</h5>
+            </div>
+            <div class="card-body p-4">
+              <form id="add-account-form">
+                <div class="mb-4">
+                  <label for="email" class="form-label fw-bold">이 메 일:</label>
+                  <input type="email" id="email" class="form-control" required style="border-radius: 8px; border: 2px solid #e9ecef;">
+                </div>
+                <div class="mb-4">
+                  <label for="nickname" class="form-label fw-bold">닉 네 임:</label>
+                  <input type="text" id="nickname" class="form-control" required style="border-radius: 8px; border: 2px solid #e9ecef;">
+                </div>
+                <div class="mb-4">
+                  <label for="password" class="form-label fw-bold">비밀번호:</label>
+                  <input type="password" id="password" class="form-control" required style="border-radius: 8px; border: 2px solid #e9ecef;">
+                </div>
+                <button type="submit" class="btn btn-success px-4 py-2" style="border-radius: 8px; font-weight: 600;">계정 추가</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+          <div class="card h-100" style="border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 12px;">
+            <div class="card-header" style="background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%); color: white; border-radius: 12px 12px 0 0; border: none;">
+              <h5 class="mb-0" style="font-weight: 600;">계정 삭제</h5>
+            </div>
+            <div class="card-body p-4">
+              <div class="mb-4">
+                <label for="delete-email" class="form-label fw-bold">삭제할 계정 이메일:</label>
+                <input type="email" id="delete-email" class="form-control" placeholder="이메일을 입력하세요" style="border-radius: 8px; border: 2px solid #e9ecef;">
+              </div>
+              <button id="delete-account" class="btn btn-danger px-4 py-2" style="border-radius: 8px; font-weight: 600;">계정 삭제</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-12">
+          <div class="card" style="border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 12px;">
+            <div class="card-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px 12px 0 0; border: none;">
+              <h5 class="mb-0" style="font-weight: 600;">계정 목록</h5>
+            </div>
+            <div class="card-body p-4">
+              <div id="accounts-list" class="bg-light p-4 rounded" style="max-height: 300px; overflow-y: auto; border-radius: 8px; border: 1px solid #e9ecef;">
+                <p class="text-muted">계정 목록을 불러오는 중...</p>
+              </div>
+              <button id="refresh-accounts" class="btn btn-outline-primary btn-sm mt-3 px-4 py-2" style="border-radius: 8px;">목록 새로고침</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+
+    <!-- 게시판 관리 탭 -->
+    <div class="tab-pane fade" id="board-content" role="tabpanel" aria-labelledby="board-tab" data-section="board-section">
+      <h3 class="mb-5" style="color: #2c3e50; font-weight: 700; border-bottom: 3px solid #f39c12; padding-bottom: 15px;">게시판 관리</h3>
+      
+      <div class="row">
+        <div class="col-12">
+          <div class="card" style="border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 12px;">
+            <div class="card-header" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; border-radius: 12px 12px 0 0; border: none;">
+              <h5 class="mb-0" style="font-weight: 600;">게시글 목록</h5>
+            </div>
+            <div class="card-body p-4">
+              <div id="posts-list" class="bg-light p-4 rounded" style="max-height: 400px; overflow-y: auto; border-radius: 8px; border: 1px solid #e9ecef;">
+                <p class="text-muted">게시글 목록을 불러오는 중...</p>
+              </div>
+              <button id="refresh-posts" class="btn btn-outline-primary btn-sm mt-3 px-4 py-2" style="border-radius: 8px;">목록 새로고침</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// 서비스 상태 확인
+async function checkServiceStatus() {
+  try {
+    const response = await fetch('/stocks/price-update-status');
+    const status = await response.json();
+    
+    const statusDiv = document.getElementById('service-status');
+    statusDiv.innerHTML = `
+      <p><strong>서비스 상태:</strong> <span class="badge bg-success">${status.serviceStatus}</span></p>
+      <p><strong>실행 중:</strong> <span class="badge ${status.isRunning ? 'bg-warning' : 'bg-secondary'}">${status.isRunning ? '예' : '아니오'}</span></p>
+      <p><strong>마지막 업데이트:</strong> ${status.lastUpdate ? new Date(status.lastUpdate).toLocaleString('ko-KR') : '없음'}</p>
+    `;
+  } catch (error) {
+    console.error('상태 확인 실패:', error);
+    document.getElementById('service-status').innerHTML = '<p class="text-danger">상태 확인 실패</p>';
+  }
+}
+
+// 로그 추가
+function addLog(message, type = 'info') {
+  const logDiv = document.getElementById('update-log');
+  const timestamp = new Date().toLocaleString('ko-KR');
+  const logEntry = document.createElement('div');
+  logEntry.className = `mb-2 p-2 rounded ${type === 'error' ? 'bg-danger text-white' : type === 'success' ? 'bg-success text-white' : 'bg-info text-white'}`;
+  logEntry.innerHTML = `<small>${timestamp}</small><br>${message}`;
+  
+  logDiv.appendChild(logEntry);
+  logDiv.scrollTop = logDiv.scrollHeight;
+}
+
+// 개별 종목 가격 업데이트
+async function updateSinglePrice(ticker) {
+  if (!ticker) {
+    addLog('티커를 입력해주세요.', 'error');
+    return;
+  }
+  
+  try {
+    addLog(`${ticker} 가격 업데이트 시작...`, 'info');
+    
+    const response = await fetch(`/stocks/update-price/${ticker}`, {
+      method: 'POST'
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      addLog(`${ticker} 가격 업데이트 성공: $${result.price}`, 'success');
+    } else {
+      addLog(`${ticker} 가격 업데이트 실패: ${result.error || '알 수 없는 오류'}`, 'error');
+    }
+  } catch (error) {
+    addLog(`${ticker} 가격 업데이트 오류: ${error.message}`, 'error');
+  }
+}
+
+// 전체 가격 업데이트
+async function updateAllPrices() {
+  try {
+    addLog('전체 가격 업데이트 시작...', 'info');
+    
+    const response = await fetch('/stocks/update-all-prices', {
+      method: 'POST'
+    });
+    
+    const result = await response.json();
+    addLog(result.message, 'success');
+    
+    // 5초 후 상태 새로고침
+    setTimeout(checkServiceStatus, 5000);
+  } catch (error) {
+    addLog(`전체 가격 업데이트 오류: ${error.message}`, 'error');
+  }
+}
+
+// 이벤트 리스너 등록
+document.addEventListener('DOMContentLoaded', function() {
+  // 초기 상태 확인
+  checkServiceStatus();
+  
+  // 상태 새로고침 버튼
+  document.getElementById('refresh-status').addEventListener('click', checkServiceStatus);
+  
+  // 개별 업데이트 버튼
+  document.getElementById('update-single').addEventListener('click', function() {
+    const ticker = document.getElementById('ticker-input').value.trim().toUpperCase();
+    updateSinglePrice(ticker);
+  });
+  
+  // 전체 업데이트 버튼
+  document.getElementById('update-all').addEventListener('click', updateAllPrices);
+  
+  // Enter 키로 개별 업데이트
+  document.getElementById('ticker-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      const ticker = this.value.trim().toUpperCase();
+      updateSinglePrice(ticker);
+    }
+  });
+});
+
+// 30초마다 상태 자동 새로고침
+setInterval(checkServiceStatus, 30000);
+
+// 계정 관리 함수들
+async function loadAccounts() {
+  try {
+    const response = await fetch('/admin/accounts');
+    const accounts = await response.json();
+    
+    const accountsList = document.getElementById('accounts-list');
+    if (accounts.length === 0) {
+      accountsList.innerHTML = '<p class="text-muted">등록된 계정이 없습니다.</p>';
+      return;
+    }
+    
+    let html = '<div class="table-responsive"><table class="table table-sm">';
+    html += '<thead><tr><th>이메일</th><th>닉네임</th><th>가입일</th></tr></thead><tbody>';
+    
+    accounts.forEach(account => {
+      html += `<tr>
+        <td>${account.email}</td>
+        <td>${account.nickname}</td>
+        <td>${new Date(account.createdAt).toLocaleDateString('ko-KR')}</td>
+      </tr>`;
+    });
+    
+    html += '</tbody></table></div>';
+    accountsList.innerHTML = html;
+  } catch (error) {
+    console.error('계정 목록 로드 실패:', error);
+    document.getElementById('accounts-list').innerHTML = '<p class="text-danger">계정 목록을 불러오는데 실패했습니다.</p>';
+  }
+}
+
+async function addAccount(email, nickname, password) {
+  try {
+    const response = await fetch('/admin/accounts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, nickname, password })
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      addLog(`계정 추가 성공: ${email}`, 'success');
+      document.getElementById('add-account-form').reset();
+      loadAccounts();
+    } else {
+      addLog(`계정 추가 실패: ${result.error}`, 'error');
+    }
+  } catch (error) {
+    addLog(`계정 추가 오류: ${error.message}`, 'error');
+  }
+}
+
+async function deleteAccount(email) {
+  if (!email) {
+    addLog('삭제할 계정의 이메일을 입력해주세요.', 'error');
+    return;
+  }
+  
+  if (!confirm(`정말로 ${email} 계정을 삭제하시겠습니까?`)) {
+    return;
+  }
+  
+  try {
+    const response = await fetch(`/admin/accounts/${encodeURIComponent(email)}`, {
+      method: 'DELETE'
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      addLog(`계정 삭제 성공: ${email}`, 'success');
+      document.getElementById('delete-email').value = '';
+      loadAccounts();
+    } else {
+      addLog(`계정 삭제 실패: ${result.error}`, 'error');
+    }
+  } catch (error) {
+    addLog(`계정 삭제 오류: ${error.message}`, 'error');
+  }
+}
+
+// 게시판 관리 함수들
+async function loadPosts() {
+  try {
+    const response = await fetch('/admin/posts');
+    const posts = await response.json();
+    
+    const postsList = document.getElementById('posts-list');
+    if (posts.length === 0) {
+      postsList.innerHTML = '<p class="text-muted">등록된 게시글이 없습니다.</p>';
+      return;
+    }
+    
+    let html = '<div class="table-responsive"><table class="table table-sm">';
+    html += '<thead><tr><th>제목</th><th>작성자</th><th>작성일</th><th>작업</th></tr></thead><tbody>';
+    
+    posts.forEach(post => {
+      html += `<tr>
+        <td>${post.title}</td>
+        <td>${post.author || '알 수 없음'}</td>
+        <td>${new Date(post.createdAt).toLocaleDateString('ko-KR')}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" onclick="deletePost('${post._id}', '${post.title}')">
+            삭제
+          </button>
+        </td>
+      </tr>`;
+    });
+    
+    html += '</tbody></table></div>';
+    postsList.innerHTML = html;
+  } catch (error) {
+    console.error('게시글 목록 로드 실패:', error);
+    document.getElementById('posts-list').innerHTML = '<p class="text-danger">게시글 목록을 불러오는데 실패했습니다.</p>';
+  }
+}
+
+async function deletePost(postId, title) {
+  if (!confirm(`정말로 "${title}" 게시글을 삭제하시겠습니까?`)) {
+    return;
+  }
+  
+  try {
+    const response = await fetch(`/admin/posts/${postId}`, {
+      method: 'DELETE'
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      addLog(`게시글 삭제 성공: ${title}`, 'success');
+      loadPosts();
+    } else {
+      addLog(`게시글 삭제 실패: ${result.error}`, 'error');
+    }
+  } catch (error) {
+    addLog(`게시글 삭제 오류: ${error.message}`, 'error');
+  }
+}
+
+// 부드러운 스크롤 함수
+function smoothScrollToSection(sectionId) {
+  const section = document.querySelector(`[data-section="${sectionId}"]`);
+  if (section) {
+    // 페이지 상단에서의 오프셋 계산
+    const offsetTop = section.offsetTop - 100; // 헤더 높이만큼 여백 추가
+    
+    // 부드러운 스크롤
+    window.scrollTo({
+      top: offsetTop,
+      behavior: 'smooth'
+    });
+    
+    console.log(`스크롤 실행: ${sectionId}, 위치: ${offsetTop}`);
+  } else {
+    console.log(`섹션을 찾을 수 없음: ${sectionId}`);
+  }
+}
+
+// 이벤트 리스너 등록 (계정 관리)
+document.addEventListener('DOMContentLoaded', function() {
+  // 기존 이벤트 리스너들...
+  
+  // 계정 추가 폼
+  document.getElementById('add-account-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    const nickname = document.getElementById('nickname').value.trim();
+    const password = document.getElementById('password').value;
+    
+    if (email && nickname && password) {
+      addAccount(email, nickname, password);
+    }
+  });
+  
+  // 계정 삭제 버튼
+  document.getElementById('delete-account').addEventListener('click', function() {
+    const email = document.getElementById('delete-email').value.trim();
+    deleteAccount(email);
+  });
+  
+  // 계정 목록 새로고침
+  document.getElementById('refresh-accounts').addEventListener('click', loadAccounts);
+  
+  // 게시글 목록 새로고침
+  document.getElementById('refresh-posts').addEventListener('click', loadPosts);
+  
+  // 탭 변경 시 해당 데이터 로드 및 부드러운 스크롤
+  document.getElementById('price-tab').addEventListener('click', function() {
+    setTimeout(() => smoothScrollToSection('price-section'), 300);
+  });
+  document.getElementById('account-tab').addEventListener('click', function() {
+    setTimeout(() => {
+      loadAccounts();
+      smoothScrollToSection('account-section');
+    }, 300);
+  });
+  document.getElementById('board-tab').addEventListener('click', function() {
+    setTimeout(() => {
+      loadPosts();
+      smoothScrollToSection('board-section');
+    }, 300);
+  });
+});
+</script>
+
+<%- include('inc/bottom') %>
+

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BaeDangJuniors Finance</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 홈 페이지 전용 스타일 */
+        .hero{display:flex; justify-content:space-between; align-items:center; gap:48px; padding:64px 0; background-color:#f5f7fb; border-radius:14px; margin-top:32px; flex-wrap:wrap; text-align:center;}
+        .hero-content{flex:1; min-width:300px; text-align:left;}
+        .hero h1{font-size:2.5rem; line-height:1.2; font-weight:700; color:#1f2937; margin:0 0 16px}
+        .hero h1 br{display:none}
+        .hero p{font-size:1.125rem; color:#6b7280; margin-bottom:2rem}
+        .hero div a{display:inline-flex; align-items:center; justify-content:center; padding:12px 24px; border-radius:10px; font-weight:600; transition:background-color .2s ease}
+        
+        .features{padding:64px 0}
+        .section-title{font-size:2rem; font-weight:700; text-align:center; margin-bottom:48px}
+        .features-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px; text-align:center;}
+        .feature-card{background-color:#ffffff; padding:32px; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.06)}
+        .feature-card h3{font-size:1.25rem; font-weight:600; margin-bottom:8px}
+        .feature-card p{color:#6b7280}
+        
+        .portfolio-section{background-color:#ffffff; padding:64px 0; border-radius:14px; margin-top:32px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,.06);}
+        .portfolio-empty{text-align:center; padding:48px;}
+        .portfolio-empty p{font-size:1.125rem; color:#6b7280; margin-bottom:24px}
+        .portfolio-empty a{margin:0 8px}
+        
+        .btn{padding:12px 24px; border-radius:10px; font-weight:600;}
+        .btn--primary{background-color:#2563eb; color:#fff; transition:background-color .2s ease}
+        .btn--primary:hover{background-color:#1e40af}
+        .btn--ghost{background:transparent; color:#2563eb; border:2px solid #2563eb; transition:all .2s ease}
+        .btn--ghost:hover{background:#2563eb; color:#fff}
+        
+        @media (max-width: 768px) {
+            .hero { flex-direction: column-reverse; }
+            .hero-content { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <%- include('inc/top', {title:'BDJ Finance'}) %>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>배당주 포트폴리오의 시작! <br> BDJ finance와 함께</h1>
+            <p>데이터 기반의 AI 챗봇 <b>배디(Baedi)</b>와 함께 안정적인 배당주를 찾고, 나만의 포트폴리오를 만들어보세요.</p>
+            <div>
+                <a style="color: rgb(249, 248, 245); background-color: #f78308;" href="/chatbot" class="btn btn--primary">배디와 함께 시작하기</a>
+            </div>
+            </div>
+            <img src="/img/bdjLogo.png" alt="BD-JU Finance" class="w-2/5 max-w-sm rounded-xl">
+        </section>
+
+        <section class="features">
+            <h2 class="section-title">주요 서비스</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>AI 챗봇</h3>
+                    <p>배디가 챗봇이 당신의 투자 결정을 도와줍니다.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>맞춤형 포트폴리오</h3>
+                <p>배디와 함께 나만의 포트폴리오를 완성해 보세요. </p>
+                </div>
+                <div class="feature-card">
+                    <h3>최신 배당 정보</h3>
+                    <p>최신 배당 데이터와 수익률을 시각화해 투자 흐름과 트렌드를 한눈에 보여드립니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 내 포트폴리오 섹션 -->
+        <section class="portfolio-section">
+            <h2 class="section-title">내 포트폴리오</h2>
+            <div class="portfolio-empty">
+                <p>아직 포트폴리오가 없습니다. 지금 바로 추천을 받아보세요!</p>
+                <div>
+                    <a href="/portfolio" class="btn btn--primary">추천 받기</a>
+                    <a href="/analysis" class="btn btn--ghost">더 알아보기</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 챗봇 기능을 위한 스크립트 파일 추가 -->
+    <script src="/js/chatbot.js"></script>
+    
+<%- include('inc/bottom') %>
