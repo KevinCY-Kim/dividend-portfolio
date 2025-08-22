@@ -360,31 +360,56 @@ userAgents: [
 ## 스크린샷
 
 ### 메인 페이지
-- **[메인 페이지 1](docs/screenshots/1.%20main1.png)** - 홈페이지 메인 화면
-- **[메인 페이지 2](docs/screenshots/2.%20main2.png)** - 홈페이지 추가 기능
+![메인 페이지 1](docs/screenshots/1.%20main1.png)
+*홈페이지 메인 화면*
+
+![메인 페이지 2](docs/screenshots/2.%20main2.png)
+*홈페이지 추가 기능*
 
 ### 배당주 선택
-- **[배당주 선택 1](docs/screenshots/3.%20select1.png)** - 배당주 선택 메인 화면
-- **[배당주 선택 2](docs/screenshots/4.%20select2.png)** - 종목 정보 및 차트
-- **[배당주 선택 3](docs/screenshots/5.%20select3.png)** - 월별 배당 차트
+![배당주 선택 1](docs/screenshots/3.%20select1.png)
+*배당주 선택 메인 화면*
+
+![배당주 선택 2](docs/screenshots/4.%20select2.png)
+*종목 정보 및 차트*
+
+![배당주 선택 3](docs/screenshots/5.%20select3.png)
+*월별 배당 차트*
 
 ### 게시판
-- **[게시판 메인](docs/screenshots/7.%20Board.png)** - 게시판 목록 화면
-- **[게시판 상세 1](docs/screenshots/8.%20board2.png)** - 게시글 상세 보기
-- **[게시판 상세 2](docs/screenshots/9.%20board3.png)** - 게시글 수정/삭제
+![게시판 메인](docs/screenshots/7.%20Board.png)
+*게시판 목록 화면*
+
+![게시판 상세 1](docs/screenshots/8.%20board2.png)
+*게시글 상세 보기*
+
+![게시판 상세 2](docs/screenshots/9.%20board3.png)
+*게시글 수정/삭제*
 
 ### 챗봇
-- **[챗봇 인터페이스](docs/screenshots/6.%20chatbot.png)** - AI 챗봇 대화 화면
+![챗봇 인터페이스](docs/screenshots/6.%20chatbot.png)
+*AI 챗봇 대화 화면*
 
 ### 사용자 인증
-- **[로그인](docs/screenshots/10.%20login.png)** - 사용자 로그인 화면
-- **[로그아웃](docs/screenshots/11.%20logout.png)** - 로그아웃 상태
-- **[회원가입](docs/screenshots/13.%20register.png)** - 새 계정 생성
+![로그인](docs/screenshots/10.%20login.png)
+*사용자 로그인 화면*
+
+![로그아웃](docs/screenshots/11.%20logout.png)
+*로그아웃 상태*
+
+![회원가입](docs/screenshots/13.%20register.png)
+*새 계정 생성*
 
 ### 관리자 모드
-- **[유지보수 모드 1](docs/screenshots/14.%20maintanace_mode.png)** - 관리자 모드 메인
-- **[유지보수 모드 2](docs/screenshots/15.%20maintanace_mode2.png)** - 계정 관리
-- **[유지보수 모드 3](docs/screenshots/16.%20maintanace_mode3.png)** - 게시판 관리
+![유지보수 모드 1](docs/screenshots/14.%20maintanace_mode.png)
+*관리자 모드 메인*
+
+![유지보수 모드 2](docs/screenshots/15.%20maintanace_mode2.png)
+*계정 관리*
+
+![유지보수 모드 3](docs/screenshots/16.%20maintanace_mode3.png)
+*게시판 관리*
 
 ### 협업 및 개발
-- **[Git 협업](docs/screenshots/17.%20git_cowork.png)** - 팀 협업 및 버전 관리
+![Git 협업](docs/screenshots/17.%20git_cowork.png)
+*팀 협업 및 버전 관리*
