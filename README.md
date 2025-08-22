@@ -309,3 +309,82 @@ node scripts/load_dividends_from_csv.js data/us_etf_dividends_events.csv
 - MongoDB 커뮤니티
 - Bootstrap 개발팀
 - Chart.js 개발팀
+
+---
+
+## 윤리와 법적 고려사항
+
+### Rate Limiting
+- **서버 부하 감소**: API 호출 제한을 통한 서버 부하 최소화
+- **시간 윈도우**: 1분당 최대 50개 요청으로 제한
+- **동적 딜레이**: 1-3초 랜덤 딜레이로 자연스러운 요청 패턴
+
+```javascript
+// Rate Limiting 설정
+rateLimit: {
+  maxRequests: 50,    // 최대 요청 수
+  timeWindow: 60000,  // 1분 (밀리초)
+  minDelay: 1000,     // 최소 딜레이 (1초)
+  maxDelay: 3000      // 최대 딜레이 (3초)
+}
+```
+
+### User-Agent 회전
+- **봇탐지 회피**: 다양한 브라우저 User-Agent를 랜덤으로 사용
+- **자연스러운 요청**: Chrome, Firefox, Safari 등 다양한 브라우저 시뮬레이션
+- **헤더 다양화**: Accept, Accept-Language, DNT 등 실제 브라우저와 동일한 헤더
+
+```javascript
+// 봇탐지 회피를 위한 User-Agent 목록
+userAgents: [
+  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...',
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit...',
+  'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36...'
+]
+```
+
+### 저작권과 이용약관
+- **Yahoo Finance API**: 공개 API 사용으로 법적 문제 방지
+- **데이터 출처**: 모든 주식 데이터는 공식 API를 통한 수집
+- **이용약관 준수**: 각 API 제공업체의 이용약관 및 정책 준수
+- **개인정보 보호**: 사용자 데이터 수집 및 처리 시 개인정보보호법 준수
+
+### 보안 고려사항
+- **요청 제한**: 과도한 API 호출 방지
+- **에러 처리**: 429 (Rate Limit) 에러 시 자동 딜레이 적용
+- **프록시 지원**: 필요시 프록시 서버를 통한 요청 라우팅
+- **타임아웃 설정**: 15초 타임아웃으로 무한 대기 방지
+
+---
+
+## 스크린샷
+
+### 메인 페이지
+- **[메인 페이지 1](docs/screenshots/1.%20main1.png)** - 홈페이지 메인 화면
+- **[메인 페이지 2](docs/screenshots/2.%20main2.png)** - 홈페이지 추가 기능
+
+### 배당주 선택
+- **[배당주 선택 1](docs/screenshots/3.%20select1.png)** - 배당주 선택 메인 화면
+- **[배당주 선택 2](docs/screenshots/4.%20select2.png)** - 종목 정보 및 차트
+- **[배당주 선택 3](docs/screenshots/5.%20select3.png)** - 월별 배당 차트
+
+### 게시판
+- **[게시판 메인](docs/screenshots/7.%20Board.png)** - 게시판 목록 화면
+- **[게시판 상세 1](docs/screenshots/8.%20board2.png)** - 게시글 상세 보기
+- **[게시판 상세 2](docs/screenshots/9.%20board3.png)** - 게시글 수정/삭제
+
+### 챗봇
+- **[챗봇 인터페이스](docs/screenshots/6.%20chatbot.png)** - AI 챗봇 대화 화면
+
+### 사용자 인증
+- **[로그인](docs/screenshots/10.%20login.png)** - 사용자 로그인 화면
+- **[로그아웃](docs/screenshots/11.%20logout.png)** - 로그아웃 상태
+- **[회원가입](docs/screenshots/13.%20register.png)** - 새 계정 생성
+
+### 관리자 모드
+- **[유지보수 모드 1](docs/screenshots/14.%20maintanace_mode.png)** - 관리자 모드 메인
+- **[유지보수 모드 2](docs/screenshots/15.%20maintanace_mode2.png)** - 계정 관리
+- **[유지보수 모드 3](docs/screenshots/16.%20maintanace_mode3.png)** - 게시판 관리
+
+### 협업 및 개발
+- **[Git 협업](docs/screenshots/17.%20git_cowork.png)** - 팀 협업 및 버전 관리

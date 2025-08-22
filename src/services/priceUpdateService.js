@@ -6,6 +6,56 @@ class PriceUpdateService {
   constructor() {
     this.isRunning = false;
     this.lastUpdate = null;
+    this.requestCount = 0;
+    this.lastRequestTime = 0;
+    
+    // 봇탐지 회피를 위한 User-Agent 목록
+    this.userAgents = [
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/121.0',
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1 Safari/605.1.15',
+      'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    ];
+    
+    // Rate Limiting 설정
+    this.rateLimit = {
+      maxRequests: 50,  // 최대 요청 수
+      timeWindow: 60000, // 1분 (밀리초)
+      minDelay: 1000,   // 최소 딜레이 (1초)
+      maxDelay: 3000    // 최대 딜레이 (3초)
+    };
+  }
+
+  // 랜덤 User-Agent 선택
+  getRandomUserAgent() {
+    return this.userAgents[Math.floor(Math.random() * this.userAgents.length)];
+  }
+
+  // Rate Limiting 체크 및 딜레이
+  async checkRateLimit() {
+    const now = Date.now();
+    
+    // 시간 윈도우 체크
+    if (now - this.lastRequestTime > this.rateLimit.timeWindow) {
+      this.requestCount = 0;
+      this.lastRequestTime = now;
+    }
+    
+    // 요청 수 제한 체크
+    if (this.requestCount >= this.rateLimit.maxRequests) {
+      const waitTime = this.rateLimit.timeWindow - (now - this.lastRequestTime);
+      console.log(`⏳ Rate limit 도달. ${waitTime}ms 대기...`);
+      await this.delay(waitTime);
+      this.requestCount = 0;
+      this.lastRequestTime = Date.now();
+    }
+    
+    // 랜덤 딜레이 적용
+    const randomDelay = Math.random() * (this.rateLimit.maxDelay - this.rateLimit.minDelay) + this.rateLimit.minDelay;
+    await this.delay(randomDelay);
+    
+    this.requestCount++;
   }
 
   // 서비스 시작
@@ -45,29 +95,36 @@ class PriceUpdateService {
       console.log(`📊 총 ${stocks.length}개 종목 가격 업데이트 시작`);
 
       // 배치 처리로 가격 업데이트 (API 호출 제한 고려)
-      const batchSize = 10;
+      const batchSize = 5; // 배치 크기 줄임 (Rate Limiting 고려)
       let updatedCount = 0;
       let errorCount = 0;
 
       for (let i = 0; i < stocks.length; i += batchSize) {
         const batch = stocks.slice(i, i + batchSize);
         
-        // 배치별로 병렬 처리
-        const promises = batch.map(stock => this.updateStockPrice(stock.ticker));
-        const results = await Promise.allSettled(promises);
+        // Rate Limiting 체크
+        await this.checkRateLimit();
         
-        results.forEach(result => {
-          if (result.status === 'fulfilled') {
-            updatedCount++;
-          } else {
+        // 배치별로 순차 처리 (병렬 처리 대신)
+        for (const stock of batch) {
+          try {
+            const result = await this.updateStockPrice(stock.ticker);
+            if (result.success) {
+              updatedCount++;
+            } else {
+              errorCount++;
+            }
+          } catch (error) {
             errorCount++;
-            console.error('❌ 가격 업데이트 실패:', result.reason);
+            console.error(`❌ ${stock.ticker} 업데이트 실패:`, error.message);
           }
-        });
+        }
 
-        // API 호출 제한을 위한 딜레이
+        // 배치 간 딜레이
         if (i + batchSize < stocks.length) {
-          await this.delay(1000); // 1초 대기
+          const batchDelay = Math.random() * 2000 + 1000; // 1-3초 랜덤 딜레이
+          console.log(`⏳ 배치 완료. ${Math.round(batchDelay)}ms 대기...`);
+          await this.delay(batchDelay);
         }
       }
 
@@ -111,17 +168,35 @@ class PriceUpdateService {
     }
   }
 
-  // Yahoo Finance API에서 주식 가격 가져오기
+  // Yahoo Finance API에서 주식 가격 가져오기 (봇탐지 회피 강화)
   async getStockPrice(ticker) {
     try {
       // Yahoo Finance API 엔드포인트
       const url = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}`;
       
+      // 봇탐지 회피를 위한 고급 헤더 설정
+      const headers = {
+        'User-Agent': this.getRandomUserAgent(),
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.5',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'DNT': '1',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1',
+        'Sec-Fetch-Dest': 'document',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-Site': 'none',
+        'Cache-Control': 'max-age=0'
+      };
+
       const response = await axios.get(url, {
-        timeout: 10000,
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-        }
+        timeout: 15000, // 타임아웃 증가
+        headers: headers,
+        // 프록시 설정 (필요시)
+        // proxy: {
+        //   host: 'proxy.example.com',
+        //   port: 8080
+        // }
       });
 
       if (response.data && response.data.chart && response.data.chart.result) {
@@ -137,6 +212,9 @@ class PriceUpdateService {
     } catch (error) {
       if (error.response && error.response.status === 404) {
         console.warn(`⚠️ ${ticker}: 종목을 찾을 수 없음`);
+      } else if (error.response && error.response.status === 429) {
+        console.warn(`⚠️ ${ticker}: Rate limit 초과. 더 긴 딜레이 적용`);
+        await this.delay(5000); // 5초 대기
       } else {
         console.error(`❌ ${ticker} API 호출 실패:`, error.message);
       }
@@ -155,7 +233,9 @@ class PriceUpdateService {
     return {
       isRunning: this.isRunning,
       lastUpdate: this.lastUpdate,
-      serviceStatus: 'running'
+      serviceStatus: 'running',
+      requestCount: this.requestCount,
+      rateLimit: this.rateLimit
     };
   }
 
