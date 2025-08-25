@@ -10,7 +10,7 @@ Node.js + Express + MongoDB + EJS 기반으로 프론트/백엔드 구성.
 ### 핵심 기능
 - **배당주 데이터 관리** (MongoDB 기반)
 - **월별 배당 포트폴리오 추천** 
-- **종목 선택 및 배당 시각화 차트** (Chart.js)
+- **종목 선택 및 배당 시각화 차트** (Plotly.js)
 - **실시간 주식 가격 업데이트** (자동/수동)
 
 ### 사용자 관리
@@ -63,11 +63,11 @@ dividend-portfolio/
 │     ├─ 9. board3.png          # 게시판 상세 2
 │     ├─ 10. login.png          # 로그인 화면
 │     ├─ 11. logout.png         # 로그아웃 상태
-│     ├─ 13. register.png       # 회원가입 화면
-│     ├─ 14. maintanace_mode.png    # 관리자 모드 1
-│     ├─ 15. maintanace_mode2.png   # 관리자 모드 2
-│     ├─ 16. maintanace_mode3.png   # 관리자 모드 3
-│     └─ 17. git_cowork.png     # Git 협업
+│     ├─ 12. register.png       # 회원가입 화면
+│     ├─ 13. maintenance_mode.png    # 관리자 모드 1
+│     ├─ 14. maintenance_mode2.png   # 관리자 모드 2
+│     ├─ 15. maintenance_mode3.png   # 관리자 모드 3
+│     └─ 16. git_co-work.png     # Git 협업
 ├─ scripts/                      # 유틸리티 스크립트
 │  ├─ fix_december_duplicates.js    # 12월 중복 데이터 수정
 │  ├─ fix_duplicate_dividends.js    # 배당 중복 데이터 수정
@@ -434,19 +434,19 @@ userAgents: [
 ![로그아웃](docs/screenshots/11.%20logout.png)
 *로그아웃 상태*
 
-![회원가입](docs/screenshots/13.%20register.png)
+![회원가입](docs/screenshots/12.%20register.png)
 *새 계정 생성*
 
 ### 관리자 모드
-![유지보수 모드 1](docs/screenshots/14.%20maintanace_mode.png)
-*관리자 모드 메인*
+![유지보수 모드 1](docs/screenshots/13.%20maintenance_mode.png)
+*주식 가격 관리*
 
-![유지보수 모드 2](docs/screenshots/15.%20maintanace_mode2.png)
+![유지보수 모드 2](docs/screenshots/14.%20maintenance_mode2.png)
 *계정 관리*
 
-![유지보수 모드 3](docs/screenshots/16.%20maintanace_mode3.png)
+![유지보수 모드 3](docs/screenshots/15.%20maintenance_mode3.png)
 *게시판 관리*
 
 ### 협업 및 개발
-![Git 협업](docs/screenshots/17.%20git_cowork.png)
+![Git 협업](docs/screenshots/16.%20git_co-work.png)
 *팀 협업 및 버전 관리*
